@@ -1,0 +1,117 @@
+{{- $image := .Page.Resources.GetMatch (printf "%s" (.Destination | safeURL)) -}}
+{{- $Permalink := .Destination | relURL | safeURL -}}
+{{- $alt := .PlainText | safeHTML -}}
+{{- $Width := 0 -}}
+{{- $Height := 0 -}}
+{{- $Srcset := "" -}}
+{{- $attrs := dict -}}
+{{- $customWidth := "" -}}
+{{- $customStyles := slice -}}
+{{- $customClasses := slice -}}
+{{- $extraAttrs := dict -}}
+
+{{/* Merge attributes provided via Markdown attribute list */}}
+{{- if .Attributes }}
+	{{- $attrs = merge $attrs .Attributes -}}
+{{- end }}
+
+{{/* Parse attribute definitions passed via the Title field. Example: "width=50% class=rounded" */}}
+{{- $title := strings.TrimSpace .Title -}}
+{{- if $title }}
+	{{- range (split $title " ") }}
+		{{- $pair := strings.TrimSpace . -}}
+		{{- if and $pair (in $pair "=") }}
+			{{- $kv := split $pair "=" -}}
+			{{- if ge (len $kv) 2 }}
+			{{- $key := lower (strings.TrimSpace (index $kv 0)) -}}
+			{{- $value := index $kv 1 | strings.TrimSpace -}}
+			{{- $value = trim $value `"` -}}
+			{{- $value = trim $value `'` -}}
+			{{- if and $key $value }}
+				{{- $attrs = merge $attrs (dict $key $value) -}}
+			{{- end }}
+			{{- end }}
+		{{- end }}
+	{{- end }}
+{{- end }}
+
+{{/* Collect attribute values for downstream usage */}}
+{{- if $attrs }}
+	{{- range $key, $value := $attrs }}
+		{{- $lower := lower (strings.TrimSpace $key) -}}
+		{{- if eq $lower "width" }}
+			{{- $customWidth = $value -}}
+		{{- else if eq $lower "style" }}
+			{{- $customStyles = $customStyles | append (strings.TrimSpace $value) -}}
+		{{- else if eq $lower "class" }}
+			{{- $customClasses = $customClasses | append (strings.TrimSpace $value) -}}
+		{{- else }}
+			{{- $extraAttrs = merge $extraAttrs (dict $key $value) -}}
+		{{- end }}
+	{{- end }}
+{{- end }}
+
+{{/* SVG and external images won't work with gallery layout, because their width and height attributes are unknown */}}
+{{- $galleryImage := false -}}
+
+{{- if $image -}}
+	{{- $notSVG := ne (path.Ext .Destination) ".svg" -}}
+	{{- $Permalink = $image.RelPermalink -}}
+
+	{{- if $notSVG -}}
+		{{- $Width = $image.Width -}}
+		{{- $Height = $image.Height -}}
+		{{- $galleryImage = true -}}
+
+		{{- if (default true .Page.Site.Params.imageProcessing.content.enabled) -}}
+			{{- $small := $image.Resize `480x` -}}
+			{{- $big := $image.Resize `1024x` -}}
+			{{- $Srcset = printf `%s 480w, %s 1024w` $small.RelPermalink $big.RelPermalink -}}
+		{{- end -}}
+	{{- end -}}
+{{- end -}}
+
+{{/* Combine gallery class with custom classes */}}
+{{- $classList := slice -}}
+{{- if $galleryImage }}
+	{{- $classList = $classList | append "gallery-image" -}}
+{{- end }}
+{{- range $customClasses }}
+	{{- $classList = $classList | append . -}}
+{{- end }}
+{{- $classAttr := "" -}}
+{{- if gt (len $classList) 0 }}
+	{{- $classAttr = delimit (uniq $classList) " " -}}
+{{- end }}
+
+{{/* Build style attribute, prioritising width from Markdown */}}
+{{- if $customWidth }}
+	{{- $customStyles = $customStyles | append (printf "width:%s" $customWidth) -}}
+{{- end }}
+{{- $styleAttr := "" -}}
+{{- if gt (len $customStyles) 0 }}
+	{{- $styleAttr = delimit $customStyles "; " -}}
+{{- end }}
+
+<img src="{{ $Permalink }}"
+	{{ with $Width }}width="{{ . }}"{{ end }}
+	{{ with $Height }}height="{{ . }}"{{ end }}
+	{{ with $Srcset }}srcset="{{ . }}"{{ end }}
+	loading="lazy"
+	{{ with $alt }}
+		alt="{{ . }}"
+	{{ end }}
+	{{ with $classAttr }}
+		class="{{ . }}"
+	{{ end }}
+	{{ with $styleAttr }}
+		style="{{ . }}"
+	{{ end }}
+	{{ if $galleryImage }}
+		data-flex-grow="{{ div (mul $image.Width 100) $image.Height }}"
+		data-flex-basis="{{ div (mul $image.Width 240) $image.Height }}px"
+	{{ end }}
+	{{ range $key, $value := $extraAttrs }}
+		{{ printf ` %s="%s"` $key $value | safeHTMLAttr }}
+	{{ end }}
+>
