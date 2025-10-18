@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+    <channel>
+        <title>Consume on データビジュアライゼーション講習</title>
+        <link>http://localhost:1313/categories/consume/</link>
+        <description>Recent content in Consume on データビジュアライゼーション講習</description>
+        <generator>Hugo -- gohugo.io</generator>
+        <language>ja</language>
+        <lastBuildDate>Sat, 18 Oct 2025 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/consume/index.xml" rel="self" type="application/rss+xml" /><item>
+        <title>初回のごあいさ2</title>
+        <link>http://localhost:1313/posts/template-hugo/</link>
+        <pubDate>Sat, 18 Oct 2025 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/posts/template-hugo/</guid>
+        <description>&lt;img src="http://localhost:1313/posts/template-hugo/images/cover.png" alt="Featured image of post 初回のごあいさ2" /&gt;&lt;p&gt;あああああ&lt;/p&gt;
+&lt;p&gt;あああああ&lt;/p&gt;</description>
+        </item>
+        
+    </channel>
+</rss>
