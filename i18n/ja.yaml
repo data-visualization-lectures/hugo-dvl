@@ -1,0 +1,6 @@
+footer:
+    builtWith:
+        other: "Built with {{ .Generator }}."
+
+    designedBy:
+        other: "Theme {{ .Theme }} is designed by {{ .DesignedBy }}."

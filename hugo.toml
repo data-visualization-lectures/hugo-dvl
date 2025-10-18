@@ -1,0 +1,25 @@
+baseURL = 'https://example.org/'
+languageCode = 'ja'
+title = 'データビジュアライゼーション講習'
+theme = 'stack'
+defaultContentLanguage = 'ja'
+
+[pagination]
+pagerSize = 10
+
+[params]
+description = '本講習は、マーケティング、セールスなどのビジネスパーソンや、デザイナー、エンジニアなどのクリエイター、企業経営者、コンサルタント、行政関係者、議会議員など、データ活用に関わる全ての職業の方を対象にしています。'
+mainSections = ['posts']
+featuredImageField = 'image'
+lightMode = 'auto'
+
+[params.sidebar]
+emoji = '📊'
+subtitle = '本講習はデータ活用に関わる全ての職業の方を対象にしています。'
+compact = false
+
+[menus]
+  [[menus.main]]
+  name = 'ホーム'
+  pageRef = '/'
+  weight = 1
