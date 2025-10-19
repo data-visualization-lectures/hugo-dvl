@@ -4,7 +4,7 @@ title = "感想：匿名・30代の男性"
 slug = "2017-12-20"
 date = "2017-12-20"
 categories = [
-    "feedback"
+    "testimonials"
 ]
 tags = [
 ]

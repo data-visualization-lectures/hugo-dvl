@@ -4,7 +4,7 @@ title = "感想：ミイダス株式会社 HRサイエンス研究所 所長 神
 slug = "2023-09-15"
 date = "2023-09-15"
 categories = [
-    "feedback"
+    "testimonials"
 ]
 tags = [
 ]

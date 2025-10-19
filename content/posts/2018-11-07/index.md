@@ -4,7 +4,7 @@ title = "感想：博報堂アイ・スタジオ Creative technologist 川崎 �
 slug = "2018-11-07"
 date = "2018-11-07"
 categories = [
-    "feedback"
+    "testimonials"
 ]
 tags = [
 ]

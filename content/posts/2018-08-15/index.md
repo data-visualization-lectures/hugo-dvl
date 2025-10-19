@@ -4,7 +4,7 @@ title = "感想：雑誌編集者 M.M.さん"
 slug = "2018-08-15"
 date = "2018-08-15"
 categories = [
-    "feedback"
+    "testimonials"
 ]
 tags = [
 ]

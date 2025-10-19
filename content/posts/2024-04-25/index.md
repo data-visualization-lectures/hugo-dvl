@@ -4,7 +4,7 @@ title = "感想：匿名・30代の男性（経営戦略・事業戦略）"
 slug = "2024-04-25"
 date = "2024-04-25"
 categories = [
-    "feedback"
+    "testimonials"
 ]
 tags = [
 ]

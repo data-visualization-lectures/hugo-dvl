@@ -4,7 +4,7 @@ title = "感想：匿名・30代の女性"
 slug = "2017-11-30"
 date = "2017-11-30"
 categories = [
-    "feedback"
+    "testimonials"
 ]
 tags = [
 ]

@@ -4,7 +4,7 @@ title = "感想：日本公共利益研究所 西村健さん"
 slug = "2018-08-01"
 date = "2018-08-01"
 categories = [
-    "feedback"
+    "testimonials"
 ]
 tags = [
 ]
