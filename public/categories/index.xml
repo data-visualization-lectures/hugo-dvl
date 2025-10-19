@@ -7,11 +7,51 @@
         <generator>Hugo -- gohugo.io</generator>
         <language>ja</language>
         <lastBuildDate>Thu, 25 Apr 2024 00:00:00 +0000</lastBuildDate><atom:link href="http://localhost:1313/categories/index.xml" rel="self" type="application/rss+xml" /><item>
-        <title>感想</title>
-        <link>http://localhost:1313/categories/feedback/</link>
+        <title>受講者の声</title>
+        <link>http://localhost:1313/categories/testimonials/</link>
         <pubDate>Thu, 25 Apr 2024 00:00:00 +0000</pubDate>
         
-        <guid>http://localhost:1313/categories/feedback/</guid>
+        <guid>http://localhost:1313/categories/testimonials/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>オンデマンド動画</title>
+        <link>http://localhost:1313/categories/video-on-demand/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/video-on-demand/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>一日講習</title>
+        <link>http://localhost:1313/categories/bootcamp-1day/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/bootcamp-1day/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>講演・研修</title>
+        <link>http://localhost:1313/categories/keynote-training/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/keynote-training/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>全八回講習</title>
+        <link>http://localhost:1313/categories/course/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/course/</guid>
+        <description></description>
+        </item>
+        <item>
+        <title>二日講習</title>
+        <link>http://localhost:1313/categories/bootcamp-2day/</link>
+        <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+        
+        <guid>http://localhost:1313/categories/bootcamp-2day/</guid>
         <description></description>
         </item>
         
