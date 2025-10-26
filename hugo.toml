@@ -1,4 +1,4 @@
-baseURL = 'https://example.org/'
+baseURL = 'https://data-viz-lectures.com/'
 languageCode = 'ja'
 title = 'データビジュアライゼーション講習'
 theme = 'stack'
@@ -47,3 +47,7 @@ compact = false
   name = '受講者の声'
   pageRef = '/categories/testimonials'
   weight = 60
+  [[menus.main]]
+  name = '運営者について'
+  pageRef = '/categories/about'
+  weight = 100

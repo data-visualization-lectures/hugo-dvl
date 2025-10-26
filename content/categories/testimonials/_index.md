@@ -5,4 +5,5 @@ slug = 'testimonials'
 description = '受講者の感想やフィードバックを紹介'
 weight = 60
 group = 3
+image = '/images/categories/testimonials.svg'
 +++

@@ -5,4 +5,5 @@ slug = 'course'
 description = '全八回シリーズで体系的に学ぶ講義'
 weight = 30
 group = 1
+image = '/images/categories/course.svg'
 +++

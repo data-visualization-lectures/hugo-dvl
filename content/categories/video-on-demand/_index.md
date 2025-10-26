@@ -5,4 +5,5 @@ slug = 'video-on-demand'
 description = 'いつでも学べるオンデマンド教材'
 weight = 50
 group = 2
+image = '/images/categories/video-on-demand.svg'
 +++

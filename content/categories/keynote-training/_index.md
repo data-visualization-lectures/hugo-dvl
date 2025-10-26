@@ -5,4 +5,5 @@ slug = 'keynote-training'
 description = '講演や研修プログラムに関する情報'
 weight = 40
 group = 2
+image = '/images/categories/keynote-training.svg'
 +++

@@ -4,4 +4,5 @@ linkTitle = '運営者について'
 slug = 'about'
 description = '運営者に関する情報やプロフィール'
 weight = 100
+image = '/images/categories/about.svg'
 +++

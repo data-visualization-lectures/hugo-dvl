@@ -1,0 +1,17 @@
+<svg width="1600" height="900" viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+  <defs>
+    <linearGradient id="grad-testimonials" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#006064" />
+      <stop offset="100%" stop-color="#26c6da" />
+    </linearGradient>
+  </defs>
+  <rect width="1600" height="900" fill="url(#grad-testimonials)" rx="60" ry="60" />
+  <text x="50%" y="45%" text-anchor="middle" dominant-baseline="middle"
+        font-family="Helvetica, Arial, sans-serif" font-size="80" fill="rgba(255,255,255,0.92)">
+    VOICES
+  </text>
+  <text x="50%" y="58%" text-anchor="middle" dominant-baseline="middle"
+        font-family="Helvetica, Arial, sans-serif" font-size="60" fill="rgba(255,255,255,0.85)">
+    TESTIMONIALS
+  </text>
+</svg>
