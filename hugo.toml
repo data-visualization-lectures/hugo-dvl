@@ -23,3 +23,27 @@ compact = false
   name = 'ホーム'
   pageRef = '/'
   weight = 1
+  [[menus.main]]
+  name = '一日講習'
+  pageRef = '/categories/bootcamp-1day'
+  weight = 10
+  [[menus.main]]
+  name = '二日講習'
+  pageRef = '/categories/bootcamp-2day'
+  weight = 20
+  [[menus.main]]
+  name = '全八回講習'
+  pageRef = '/categories/course'
+  weight = 30
+  [[menus.main]]
+  name = '講演・研修'
+  pageRef = '/categories/keynote-training'
+  weight = 40
+  [[menus.main]]
+  name = 'オンデマンド動画'
+  pageRef = '/categories/video-on-demand'
+  weight = 50
+  [[menus.main]]
+  name = '受講者の声'
+  pageRef = '/categories/testimonials'
+  weight = 60
