@@ -1,6 +1,6 @@
 [build]
   publish = "public"
-  command = "hugo --gc --minify -b ${URL}"
+  command = "git submodule update --init --recursive && hugo --gc --minify -b ${URL}"
 
 [build.environment]
   HUGO_VERSION = "0.152.0"
@@ -9,13 +9,13 @@
   TZ = "Asia/Tokyo"
 
 [context.production]
-  command = "hugo --gc --minify -b ${URL}"
+  command = "git submodule update --init --recursive && hugo --gc --minify -b ${URL}"
 
 [context.branch-deploy]
-  command = "hugo --gc --minify -b ${DEPLOY_PRIME_URL}"
+  command = "git submodule update --init --recursive && hugo --gc --minify -b ${DEPLOY_PRIME_URL}"
 
 [context.deploy-preview]
-  command = "hugo --gc --minify -b ${DEPLOY_PRIME_URL}"
+  command = "git submodule update --init --recursive && hugo --gc --minify -b ${DEPLOY_PRIME_URL}"
 
 [[plugins]]
   package = "netlify-plugin-hugo-cache-resources"
