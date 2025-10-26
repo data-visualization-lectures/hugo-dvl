@@ -4,3 +4,32 @@
   --base-font-family: "Noto Sans JP", var(--sys-font-family), var(--zh-font-family), sans-serif;
   --article-font-family: "Noto Sans JP", var(--sys-font-family), var(--zh-font-family), sans-serif;
 }
+
+.hero-block {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: 2.5rem;
+}
+
+.hero-image img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 1rem;
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.12);
+}
+
+.hero-text {
+  max-width: 920px;
+}
+
+.hero-text h1 {
+  font-size: clamp(1.8rem, 2.4vw, 2.8rem);
+  margin-bottom: 0.75rem;
+}
+
+.hero-text p {
+  line-height: 1.8;
+  margin-bottom: 0.75rem;
+}
