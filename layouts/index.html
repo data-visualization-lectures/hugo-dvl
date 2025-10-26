@@ -25,16 +25,15 @@
 
     {{- if gt (len $terms) 0 -}}
         {{- $groups := slice
-            (dict "id" 1 "title" "グループ1")
-            (dict "id" 2 "title" "グループ2")
-            (dict "id" 3 "title" "グループ3")
+            (dict "id" 1)
+            (dict "id" 2)
+            (dict "id" 3)
         -}}
         <div class="category-groups">
             {{- range $group := $groups -}}
                 {{- $entries := sort (where $terms "Params.group" $group.id) "Weight" -}}
                 {{- if gt (len $entries) 0 -}}
                     <section class="subsection-list category-group">
-                        <h2 class="section-title">{{ $group.title }}</h2>
                         <div class="article-list--tile">
                             {{- range $entries -}}
                                 {{ partial "article-list/tile" (dict "context" . "size" "250x150" "Type" "taxonomy") }}

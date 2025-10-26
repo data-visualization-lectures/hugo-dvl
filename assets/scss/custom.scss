@@ -33,3 +33,13 @@
   line-height: 1.8;
   margin-bottom: 0.75rem;
 }
+
+.category-groups {
+  display: flex;
+  flex-direction: column;
+  gap: 3rem;
+}
+
+.category-group {
+  margin: 0;
+}
