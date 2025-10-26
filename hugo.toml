@@ -51,3 +51,7 @@ compact = false
   name = '運営者について'
   pageRef = '/categories/about'
   weight = 100
+  [[menus.main]]
+  name = 'お問い合わせ'
+  pageRef = '/pages/contact'
+  weight = 200
