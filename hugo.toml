@@ -55,3 +55,8 @@ compact = false
   name = 'お問い合わせ'
   pageRef = '/pages/contact'
   weight = 200
+
+  [[menus.main]]
+  name = '特定商取引法に基づく表記'
+  pageRef = '/pages/legal'
+  weight = 210
