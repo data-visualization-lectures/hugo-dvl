@@ -348,11 +348,18 @@
   justify-content: center;
   pointer-events: none;
 
+
   svg {
     width: 20px;
     height: 20px;
   }
 }
+
+/* Remove shadow from site avatar */
+.sidebar header .site-avatar .site-logo {
+  box-shadow: none !important;
+}
+
 
 /* Global Button Styles (Theme Consistent) */
 .button {
