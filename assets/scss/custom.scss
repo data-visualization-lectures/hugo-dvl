@@ -140,3 +140,216 @@
     }
   }
 }
+
+.home-category {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  margin-bottom: calc(var(--section-separation) * 1.5);
+}
+
+.home-category__header {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.home-category__title {
+  font-size: 2.4rem;
+  font-weight: 600;
+  margin: 0;
+
+  a {
+    color: var(--body-text-color);
+
+    &:hover {
+      color: var(--accent-color);
+    }
+  }
+}
+
+.home-category__description {
+  margin: 0;
+  color: var(--body-text-color-secondary);
+  font-size: 1.6rem;
+  line-height: 1.6;
+}
+
+.article-list--three-column {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--section-separation);
+
+  @include respond(md) {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+.article-list--three-column article {
+  height: 100%;
+}
+
+.categories-widget {
+  .category-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 1.4rem;
+
+    .category-pill__count {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 24px;
+      height: 24px;
+      padding: 0 8px;
+      border-radius: 999px;
+      background-color: var(--accent-color);
+      color: var(--accent-color-text);
+      font-size: 1.2rem;
+    }
+  }
+}
+
+.external-link-card {
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+  background-color: var(--card-background);
+  box-shadow: var(--shadow-l1);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-l2);
+  }
+}
+
+.external-link-card__inner {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  text-decoration: none;
+  color: inherit;
+
+  &:focus-visible {
+    outline: 3px solid var(--accent-color);
+    outline-offset: 2px;
+  }
+
+  @include respond(md) {
+    flex-direction: row;
+    height: 120px;
+    overflow: hidden;
+  }
+}
+
+.external-link-card__media {
+  position: relative;
+  background-color: var(--accent-color-darker);
+  /* Mobile: height defined by min-height or content */
+  min-height: 160px;
+
+  @include respond(md) {
+    width: 200px;
+    /* 固定幅 */
+    min-height: auto;
+    height: 100%;
+    flex-shrink: 0;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+    height: 100% !important;
+    /* グローバルのheight: autoを上書き */
+    object-fit: cover;
+    object-position: center;
+    /* 中央揃えに戻す */
+  }
+}
+
+.external-link-card__media--placeholder {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--accent-color-text);
+  background-color: var(--accent-color);
+}
+
+.external-link-card__media-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  svg {
+    width: 44px;
+    height: 44px;
+  }
+}
+
+.external-link-card__body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 10px;
+  padding: var(--card-padding);
+
+  /* Flex items */
+  flex-grow: 1;
+  min-width: 0;
+  /* テキストの折り返し用 */
+
+  @include respond(md) {
+    height: 100%;
+  }
+}
+
+.external-link-card__site {
+  font-size: 1.2rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--card-text-color-tertiary);
+}
+
+.external-link-card__title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  color: var(--card-text-color-main);
+  line-height: 1.35;
+}
+
+.external-link-card__description {
+  font-size: 1.5rem;
+  color: var(--card-text-color-secondary);
+  line-height: 1.6;
+
+  p {
+    margin: 0;
+  }
+}
+
+.external-link-card__url {
+  font-size: 1.3rem;
+  color: var(--card-text-color-tertiary);
+}
+
+.external-link-card__icon {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  background-color: var(--card-background);
+  border: 1px solid var(--card-separator-color);
+  color: var(--accent-color);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+
+  svg {
+    width: 20px;
+    height: 20px;
+  }
+}
