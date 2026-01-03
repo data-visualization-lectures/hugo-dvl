@@ -107,7 +107,7 @@
     /* Features Section */
     .features {
         display: grid;
-        grid-template-columns: repeat(3, 1fr);
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
         gap: 2rem;
     }
 
@@ -140,15 +140,14 @@
     }
 
     .feature-title {
-        font-size: 1.25rem;
+        font-size: 1.5rem;
         font-weight: 700;
         margin-bottom: 1rem;
     }
 
     .feature-desc {
-        font-size: 0.95rem;
-        opacity: 0.8;
         line-height: 1.6;
+        color: var(--body-text-color);
     }
 </style>
 
@@ -179,21 +178,31 @@
 
     <!-- Features -->
     <section class="features">
-        <div class="feature-card">
+        <a href="/categories/bootcamp-1day" class="feature-card" style="text-decoration: none; color: inherit;">
             <div class="feature-icon">⚡</div>
-            <h3 class="feature-title">原理を学ぶ</h3>
-            <p class="feature-desc">データ可視化の基礎理論から、脳科学的なアプローチまで、なぜその表現が見やすいのかを論理的に学びます。</p>
-        </div>
-        <div class="feature-card">
+            <h3 class="feature-title">一日講習</h3>
+            <p class="feature-desc">データ可視化の基礎理論を集中的に学ぶ、密度が高い一日完結型のブートキャンプです。初学者に最適です。</p>
+        </a>
+        <a href="/categories/bootcamp-2day" class="feature-card" style="text-decoration: none; color: inherit;">
             <div class="feature-icon">🎨</div>
-            <h3 class="feature-title">実践力を磨く</h3>
-            <p class="feature-desc">理論だけでなく、手を動かしてチャートを作成・改善する実践的なワークショップを通じてスキルを定着させます。</p>
-        </div>
-        <div class="feature-card">
+            <h3 class="feature-title">二日講習</h3>
+            <p class="feature-desc">理論学習に加えて、実際に手を動かすワークショップを取り入れた実践的なコースです。応用力が身につきます。</p>
+        </a>
+        <a href="/categories/course" class="feature-card" style="text-decoration: none; color: inherit;">
             <div class="feature-icon">🌏</div>
-            <h3 class="feature-title">世界標準の知識</h3>
-            <p class="feature-desc">海外のカンファレンスやコミュニティで得た最新の知見と、体系化されたグローバルスタンダードな知識を提供します。</p>
-        </div>
+            <h3 class="feature-title">全八回講習</h3>
+            <p class="feature-desc">約2ヶ月かけてじっくりと学ぶ、本格的なステップアップコース。仲間と共に深く学びたい方におすすめです。</p>
+        </a>
+        <a href="/categories/keynote-training" class="feature-card" style="text-decoration: none; color: inherit;">
+            <div class="feature-icon">🎤</div>
+            <h3 class="feature-title">講演・研修</h3>
+            <p class="feature-desc">企業や団体向けのカスタマイズされた研修や講演を行います。組織全体のデータ活用リテラシー向上に貢献します。</p>
+        </a>
+        <a href="/categories/video-on-demand" class="feature-card" style="text-decoration: none; color: inherit;">
+            <div class="feature-icon">📺</div>
+            <h3 class="feature-title">オンデマンド動画</h3>
+            <p class="feature-desc">場所や時間を選ばずに自分のペースで学習できる、高品質な動画コンテンツを提供しています。</p>
+        </a>
     </section>
 
 
