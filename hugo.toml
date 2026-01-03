@@ -18,6 +18,11 @@ emoji = '📊'
 subtitle = '本講習はデータ活用に関わる全ての職業の方を対象にしています。'
 compact = false
 
+[params.sidebar.avatar]
+    enabled = true
+    local = true
+    src = "img/avatar.png"
+
 [params.widgets]
     [[params.widgets.homepage]]
         type = "archives"
