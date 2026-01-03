@@ -417,3 +417,21 @@
     }
   }
 }
+
+/* Contact Page Font Size Fix */
+.contact-page {
+  form {
+
+    /* Increase specificity if needed, but this should work with the existing structure */
+    label {
+      font-size: 1.8rem;
+      /* Labels slightly larger */
+    }
+
+    input,
+    textarea {
+      font-size: 1.7rem;
+      /* Match site body text size */
+    }
+  }
+}
