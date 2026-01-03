@@ -1,8 +1,8 @@
 +++
 author = "Yuichi Yazaki"
-title = "講演・研修：UXUIデザイン観点からのデータ可視化"
+title = "講演・研修"
 subtitle = ""
-slug = "keynote-training-uxui"
+slug = "keynote-training"
 date = "2025-10-19"
 categories = [
     "keynote-training"
