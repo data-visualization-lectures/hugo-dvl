@@ -9,7 +9,7 @@ categories = [
 ]
 tags = [
 ]
-image = "images/cover.png"
+image = ""
 type = "page"
 +++
 
