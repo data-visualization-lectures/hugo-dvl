@@ -1,6 +1,6 @@
 +++
 author = "Yuichi Yazaki"
-title = "【書籍つき・1日間】データを自在に可視化する極意"
+title = "【1日間】データ可視化・基礎"
 subtitle = "効率的!データ可視化の原理原則と様々なツールの使い分けを一気通貫で"
 slug = "1day-essentials"
 date = "2025-10-19"
