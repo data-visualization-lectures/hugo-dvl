@@ -51,6 +51,11 @@ compact = false
   weight = 10
 
   [[menus.main]]
+  name = 'パーソナルトレーニング'
+  url = 'https://personal.data-viz-lectures.com/'
+  weight = 20
+
+  [[menus.main]]
   name = '講演・研修'
   pageRef = '/categories/keynote-training'
   weight = 40
