@@ -57,6 +57,11 @@ compact = false
   weight = 200
 
   [[menus.main]]
+  name = '利用規約'
+  pageRef = '/pages/terms-of-service'
+  weight = 203
+
+  [[menus.main]]
   name = 'プライバシーポリシー'
   pageRef = '/pages/privacy-policy'
   weight = 205
