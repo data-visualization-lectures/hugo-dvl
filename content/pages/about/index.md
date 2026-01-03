@@ -12,6 +12,9 @@ tags = [
 
 +++
 
+![矢崎裕一](images/profile.jpg)
+![データ可視化の基本が全部わかる本](images/book-cover.jpg)
+
 
 ### 矢崎裕一
 
