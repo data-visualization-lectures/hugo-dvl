@@ -1,9 +1,10 @@
+```
 +++
-title = '全八回講習'
-linkTitle = '全八回講習'
+title = "講習"
+linkTitle = '講習'
 slug = 'course'
-description = '全八回シリーズで体系的に学ぶ講義'
-weight = 30
+description = 'データビジュアライゼーション講習'
+weight = 10
 group = 1
-image = '/images/categories/course.svg'
+image = '/images/categories/bootcamp-1day.svg'
 +++

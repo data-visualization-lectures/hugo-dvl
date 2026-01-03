@@ -5,7 +5,7 @@ subtitle = ""
 slug = "1day-map"
 date = "2026-01-03"
 categories = [
-    "bootcamp-1day"
+    "course"
 ]
 tags = [
 ]

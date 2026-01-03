@@ -46,8 +46,8 @@ compact = false
   pageRef = '/'
   weight = 1
   [[menus.main]]
-  name = '一日講習'
-  pageRef = '/categories/bootcamp-1day'
+  name = '講習'
+  pageRef = '/categories/course'
   weight = 10
 
   [[menus.main]]

@@ -5,7 +5,7 @@ subtitle = "効率的!データ可視化の原理原則と様々なツールの�
 slug = "1day-essentials"
 date = "2026-01-03"
 categories = [
-    "bootcamp-1day"
+    "course"
 ]
 tags = [
 ]
