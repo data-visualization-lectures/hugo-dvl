@@ -13,6 +13,7 @@ image = "images/cover.png"
 +++
 
 
+- オンラインによるご受講になります。環境設定については[ご案内ページ](/pages/online-participation/)を参照ください。
 
 ### お申し込み
 
