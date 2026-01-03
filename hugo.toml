@@ -13,6 +13,10 @@ mainSections = ['posts']
 featuredImageField = 'image'
 lightMode = 'auto'
 
+[params.dateFormat]
+published = "2006年01月02日"
+lastUpdated = "2006年01月02日"
+
 [params.sidebar]
 emoji = '📊'
 subtitle = '本講習はデータ活用に関わる全ての職業の方を対象にしています。'
