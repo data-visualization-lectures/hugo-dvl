@@ -353,3 +353,60 @@
     height: 20px;
   }
 }
+
+/* Global Button Styles (Theme Consistent) */
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.9rem 2.25rem;
+  border-radius: 999px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+  box-shadow: var(--shadow-l2);
+  border: 1px solid transparent;
+
+  &:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-l3);
+  }
+
+  &:focus-visible {
+    outline: 3px solid rgba(var(--link-background-color), 0.45);
+    outline-offset: 3px;
+  }
+
+  &:active {
+    transform: translateY(0);
+    box-shadow: var(--shadow-l1);
+  }
+
+  /* Primary variant */
+  &.primary {
+    background: var(--accent-color);
+    color: var(--accent-color-text);
+    border-color: var(--accent-color);
+
+    &:hover {
+      background: var(--accent-color-darker);
+      border-color: var(--accent-color-darker);
+    }
+  }
+
+  /* Secondary variant */
+  &.secondary {
+    background: var(--card-background);
+    color: var(--card-text-color-main);
+    border-color: var(--card-separator-color);
+
+    &:hover {
+      background: var(--card-background-selected);
+      border-color: var(--accent-color);
+      color: var(--accent-color);
+    }
+  }
+}
