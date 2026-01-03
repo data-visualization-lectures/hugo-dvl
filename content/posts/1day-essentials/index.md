@@ -9,7 +9,7 @@ categories = [
 ]
 tags = [
 ]
-image = "images/cover.png"
+image = "images/1day-essentials.png"
 +++
 
 
@@ -26,6 +26,10 @@ image = "images/cover.png"
 
 ### 使用するツール
 RawGraph、Flourish、Google Colab、そのほか
+
+### 日程
+
+隔週 第1・3土曜日
 
 ### タイムテーブル
 

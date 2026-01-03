@@ -9,7 +9,7 @@ categories = [
 ]
 tags = [
 ]
-image = "images/cover.png"
+image = "images/1day-wrangling.png"
 +++
 
 ### 差し上げます
@@ -35,6 +35,11 @@ image = "images/cover.png"
 ### 使用するツール
 
 OpenRefine、Colaboratory、IFTTT、Tabula、Googleシート、ChatGPT
+
+
+### 日程
+
+隔週 第2・4日曜日
 
 
 ### タイムテーブル

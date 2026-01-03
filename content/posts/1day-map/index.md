@@ -9,7 +9,7 @@ categories = [
 ]
 tags = [
 ]
-image = "images/cover.png"
+image = "images/1day-map.png"
 +++
 
 
@@ -32,6 +32,10 @@ image = "images/cover.png"
 
 ### 使用するツール
 QGIS、Foursquare Studio、Mapbox、地図で見る統計（jSTAT MAP）
+
+### 日程
+
+隔週 第2・4土曜日
 
 ### タイムテーブル
 
