@@ -19,7 +19,7 @@ lastUpdated = "2006年01月02日"
 
 [params.sidebar]
 emoji = '📊'
-subtitle = '日本で唯一の本格的なデータ可視化にまつわる講習です。'
+subtitle = ''
 compact = false
 
 [params.sidebar.avatar]
