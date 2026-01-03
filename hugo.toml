@@ -1,6 +1,6 @@
 baseURL = 'https://data-viz-lectures.com/'
 languageCode = 'ja'
-title = 'データビジュアライゼーション講習'
+title = 'データ可視化講習'
 theme = 'stack'
 defaultContentLanguage = 'ja'
 
