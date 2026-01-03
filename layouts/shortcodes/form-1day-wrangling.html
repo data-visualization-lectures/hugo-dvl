@@ -1,0 +1,166 @@
+<style>
+    .application-form {
+        background: var(--card-background);
+        padding: 2rem;
+        border-radius: var(--card-border-radius);
+        box-shadow: var(--shadow-l1);
+        max-width: 600px;
+        margin: 2rem auto;
+    }
+
+    .form-group {
+        margin-bottom: 1.5rem;
+    }
+
+    .form-label {
+        display: block;
+        margin-bottom: 0.5rem;
+        font-weight: bold;
+        color: var(--card-text-color-main);
+    }
+
+    .form-control,
+    .form-select {
+        width: 100%;
+        padding: 0.8rem;
+        border: 1px solid var(--card-separator-color);
+        border-radius: 8px;
+        background: var(--body-background);
+        color: #000000;
+        font-size: inherit;
+        font-family: inherit;
+    }
+
+    .btn-submit {
+        width: 100%;
+        padding: 1rem;
+        background-color: #10B981;
+        color: white;
+        border: none;
+        border-radius: 50px;
+        font-weight: bold;
+        font-size: 1.4rem;
+        cursor: pointer;
+        transition: opacity 0.3s;
+    }
+
+    .btn-submit:hover {
+        opacity: 0.9;
+    }
+
+    /* 決済エリア（初期は非表示） */
+    #payment-area {
+        display: none;
+        text-align: center;
+        padding: 2rem;
+        background: rgba(16, 185, 129, 0.1);
+        border-radius: var(--card-border-radius);
+    }
+
+    .payment-message {
+        margin-bottom: 2rem;
+        font-size: 1.2rem;
+        font-weight: bold;
+    }
+
+    .btn-stripe {
+        display: inline-block;
+        background-color: #635bff;
+        /* Stripe Purple */
+        color: white;
+        padding: 1rem 2rem;
+        border-radius: 50px;
+        text-decoration: none;
+        font-weight: bold;
+        font-size: 1.2rem;
+        box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
+    }
+</style>
+
+<div id="application-container">
+    <!-- 申し込みフォーム -->
+    <form id="app-form" class="application-form" name="bootcamp-application" method="POST" data-netlify="true">
+        <!-- Netlify設定用: 必須 -->
+        <input type="hidden" name="form-name" value="bootcamp-application" />
+        <!-- 申し込み内容の識別用 -->
+        <input type="hidden" name="subject" value="【1日間】データクレンジング・基礎" />
+
+        <h3 style="margin-bottom: 1.5rem; text-align: center;">お申し込みフォーム</h3>
+
+        <div class="form-group">
+            <label for="name" class="form-label">お名前 <span style="color:red">*</span></label>
+            <input type="text" id="name" name="name" class="form-control" required placeholder="山田 太郎">
+        </div>
+
+        <div class="form-group">
+            <label for="email" class="form-label">メールアドレス <span style="color:red">*</span></label>
+            <input type="email" id="email" name="email" class="form-control" required placeholder="email@example.com">
+        </div>
+
+        <div class="form-group">
+            <label for="schedule" class="form-label">希望日程 <span style="color:red">*</span></label>
+            <select id="schedule" name="schedule" class="form-select" required>
+                <option value="">日程を選択してください</option>
+                <option value="2026-01-11">2026年01月11日(日) 10:00-17:00</option>
+                <option value="2026-01-25">2026年01月25日(日) 10:00-17:00</option>
+                <option value="2026-02-08">2026年02月08日(日) 10:00-17:00</option>
+                <option value="2026-02-22">2026年02月22日(日) 10:00-17:00</option>
+                <option value="2026-03-08">2026年03月08日(日) 10:00-17:00</option>
+                <option value="2026-03-22">2026年03月22日(日) 10:00-17:00</option>
+                <option value="2026-04-12">2026年04月12日(日) 10:00-17:00</option>
+                <option value="2026-04-26">2026年04月26日(日) 10:00-17:00</option>
+                <option value="2026-05-10">2026年05月10日(日) 10:00-17:00</option>
+                <option value="2026-05-24">2026年05月24日(日) 10:00-17:00</option>
+                <option value="2026-06-07">2026年06月07日(日) 10:00-17:00</option>
+                <option value="2026-06-21">2026年06月21日(日) 10:00-17:00</option>
+            </select>
+        </div>
+
+        <button type="submit" class="btn-submit">上記の内容で申し込む</button>
+    </form>
+
+    <!-- 決済リンクエリア -->
+    <div id="payment-area">
+        <p class="payment-message">お申し込みありがとうございます。<br>以下のボタンより決済のお手続きをお願いいたします。</p>
+        <p style="margin-bottom: 1rem; font-size: 0.9rem;">※ 決済完了をもって正式な受付となります。</p>
+
+        <!-- Stripeリンク -->
+        <a href="https://buy.stripe.com/4gM4gAff80114kX7XG93y0c" target="_blank" rel="noopener noreferrer"
+            class="btn-stripe">
+            決済へ進む (Stripe)
+        </a>
+    </div>
+</div>
+
+<script>
+    document.getElementById('app-form').addEventListener('submit', function (e) {
+        e.preventDefault();
+
+        const form = e.target;
+        const formData = new FormData(form);
+
+        // Netlifyへデータを送信
+        fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+        })
+            .then(() => {
+                console.log("Form successfully submitted");
+
+                // 送信成功時のUI切り替え
+                const paymentArea = document.getElementById('payment-area');
+
+                // フォームを非表示にして決済ボタンを表示
+                form.style.display = 'none';
+                paymentArea.style.display = 'block';
+
+                // ページトップへスクロール（フォームが長い場合のため）
+                document.getElementById('application-container').scrollIntoView({ behavior: 'smooth' });
+            })
+            .catch((error) => {
+                alert("送信に失敗しました。時間をおいて再度お試しください。");
+                console.error(error);
+            });
+    });
+</script>
