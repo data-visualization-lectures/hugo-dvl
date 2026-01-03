@@ -1,13 +1,205 @@
 {{ define "main" }}
-{{- with .Params.hero }}
-<section class="hero-block">
-    {{- with .image }}
-    <div class="hero-image">
-        <img src="{{ . | relURL }}" alt="講習の紹介イメージ" loading="lazy" width="1600" height="720">
-    </div>
-    <p>サイトの再構築中です。</p>
-    <p>2026年1月中には再公開しますので、いましばらくお待ちください。</p>
-    {{- end }}
-</section>
-{{- end }}
+<style>
+    .lp-container {
+        display: flex;
+        flex-direction: column;
+        gap: 4rem;
+        padding: 2rem 0;
+        color: var(--card-text-color-main);
+    }
+
+    /* Hero Section */
+    .hero {
+        display: grid;
+        grid-template-columns: 1fr 2fr;
+        align-items: center;
+        gap: 2rem;
+        min-height: 400px;
+    }
+
+    @media (max-width: 768px) {
+        .hero {
+            grid-template-columns: 1fr;
+            text-align: center;
+        }
+
+        .hero-content {
+            /* Adjust order if necessary, but grid structure handles it naturally */
+        }
+
+        .hero-image {
+            order: -1;
+            /* Ensure image is on top on mobile */
+        }
+    }
+
+    .hero-content {
+        flex: 1;
+    }
+
+    .hero-title {
+        font-size: 4rem;
+        font-weight: 800;
+        line-height: 1.1;
+        margin-bottom: 1rem;
+        color: #10B981;
+        /* Stack Green */
+    }
+
+    .hero-subtitle {
+        font-size: 2rem;
+        font-weight: 700;
+        margin-bottom: 2rem;
+        line-height: 1.3;
+    }
+
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+    }
+
+    @media (max-width: 768px) {
+        .hero-buttons {
+            justify-content: center;
+        }
+    }
+
+    .btn {
+        display: inline-block;
+        padding: 0.8rem 1.5rem;
+        border-radius: 50px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: opacity 0.3s;
+    }
+
+    .btn-primary {
+        background-color: #10B981;
+        color: white;
+    }
+
+    .btn-secondary {
+        background-color: #E2E8F0;
+        color: #374151;
+    }
+
+    [data-scheme="dark"] .btn-secondary {
+        background-color: #374151;
+        color: #E2E8F0;
+    }
+
+    .hero-image {
+        flex: 1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    .hero-image img {
+        max-width: 100%;
+        height: auto;
+        border-radius: 20px;
+    }
+
+    /* Features Section */
+    .features {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 2rem;
+    }
+
+    @media (max-width: 768px) {
+        .features {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .feature-card {
+        background: var(--card-background);
+        padding: 2rem;
+        border-radius: 12px;
+        box-shadow: var(--shadow-l1);
+        transition: transform 0.2s;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-5px);
+    }
+
+    .feature-icon {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        display: inline-block;
+        padding: 0.5rem;
+        background: rgba(16, 185, 129, 0.1);
+        border-radius: 8px;
+        color: #10B981;
+    }
+
+    .feature-title {
+        font-size: 1.25rem;
+        font-weight: 700;
+        margin-bottom: 1rem;
+    }
+
+    .feature-desc {
+        font-size: 0.95rem;
+        opacity: 0.8;
+        line-height: 1.6;
+    }
+</style>
+
+<div class="lp-container">
+    <!-- Hero -->
+    <section class="hero">
+        <div class="hero-content">
+            <h1 class="hero-title">Data Viz<br>Lectures</h1>
+            <p class="hero-subtitle">データ可視化の原理と<br>実践力を学ぶ講習</p>
+            <div class="hero-buttons">
+                <a href="/categories/bootcamp-1day" class="btn btn-primary">一日講習を見る</a>
+                <a href="/categories/about" class="btn btn-secondary">運営者について</a>
+            </div>
+        </div>
+        <div class="hero-image">
+            <!-- Placeholder for the illustration -->
+            <div
+                style="width: 100%; aspect-ratio: 1/1; background-color: #7AA295; border-radius: 24px; display: flex; align-items: center; justify-content: center; color: white;">
+                <svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 24 24" fill="none"
+                    stroke="currentColor" stroke-width="1" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4" />
+                    <polyline points="17 8 12 3 7 8" />
+                    <line x1="12" y1="3" x2="12" y2="15" />
+                </svg>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features -->
+    <section class="features">
+        <div class="feature-card">
+            <div class="feature-icon">⚡</div>
+            <h3 class="feature-title">原理を学ぶ</h3>
+            <p class="feature-desc">データ可視化の基礎理論から、脳科学的なアプローチまで、なぜその表現が見やすいのかを論理的に学びます。</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🎨</div>
+            <h3 class="feature-title">実践力を磨く</h3>
+            <p class="feature-desc">理論だけでなく、手を動かしてチャートを作成・改善する実践的なワークショップを通じてスキルを定着させます。</p>
+        </div>
+        <div class="feature-card">
+            <div class="feature-icon">🌏</div>
+            <h3 class="feature-title">世界標準の知識</h3>
+            <p class="feature-desc">海外のカンファレンスやコミュニティで得た最新の知見と、体系化されたグローバルスタンダードな知識を提供します。</p>
+        </div>
+    </section>
+
+
+</div>
+{{ end }}
+
+{{ define "right-sidebar" }}
+<!-- No sidebar on homepage -->
 {{ end }}

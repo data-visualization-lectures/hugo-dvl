@@ -18,6 +18,19 @@ emoji = '📊'
 subtitle = '本講習はデータ活用に関わる全ての職業の方を対象にしています。'
 compact = false
 
+[params.widgets]
+    [[params.widgets.homepage]]
+        type = "archives"
+
+    [[params.widgets.homepage]]
+        type = "categories"
+
+    [[params.widgets.homepage]]
+        type = "tag-cloud"
+    
+    [[params.widgets.page]]
+        type = "toc"
+
 [menus]
   [[menus.main]]
   name = 'ホーム'
