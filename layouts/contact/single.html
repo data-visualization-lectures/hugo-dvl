@@ -1,36 +1,36 @@
 {{ define "main" }}
-    <article class="contact-page">
-        <header class="article-header">
-            <h1>{{ .Title }}</h1>
-            {{ with .Description }}
-                <p class="article-subtitle">{{ . }}</p>
-            {{ end }}
-        </header>
+<article class="contact-page">
+    <header class="article-header">
+        <h1>{{ .Title }}</h1>
+        {{ with .Description }}
+        <p class="article-subtitle">{{ . }}</p>
+        {{ end }}
+    </header>
 
-        <div class="article-content">
-            {{ .Content }}
-        </div>
+    <div class="article-content">
+        {{ .Content }}
+    </div>
 
-        <section class="contact-form-section">
-            <form name="contact" method="POST" action="/pages/thanks/" data-netlify="true" netlify-honeypot="bot-field">
-                <input type="hidden" name="form-name" value="contact">
-                <p class="hidden">
-                    <label>Do not fill this out: <input name="bot-field" /></label>
-                </p>
-                <label>
-                    <span>お名前</span>
-                    <input type="text" name="name" required placeholder="可視化 士郎">
-                </label>
-                <label>
-                    <span>メールアドレス</span>
-                    <input type="email" name="email" required placeholder="email@example.com">
-                </label>
-                <label>
-                    <span>ご用件</span>
-                    <textarea name="message" rows="6" required placeholder="お問い合わせ内容をご記入ください。"></textarea>
-                </label>
-                <button type="submit" class="button primary">送信する</button>
-            </form>
-        </section>
-    </article>
+    <section class="contact-form-section">
+        <form name="contact" method="POST" action="/pages/thanks/" data-netlify="true" netlify-honeypot="bot-field">
+            <input type="hidden" name="form-name" value="contact">
+            <p class="hidden">
+                <label>Do not fill this out: <input name="bot-field" /></label>
+            </p>
+            <label>
+                <span>お名前</span>
+                <input type="text" name="name" required placeholder="山田 太郎">
+            </label>
+            <label>
+                <span>メールアドレス</span>
+                <input type="email" name="email" required placeholder="email@example.com">
+            </label>
+            <label>
+                <span>ご用件</span>
+                <textarea name="message" rows="6" required placeholder="お問い合わせ内容をご記入ください。"></textarea>
+            </label>
+            <button type="submit" class="button primary">送信する</button>
+        </form>
+    </section>
+</article>
 {{ end }}
