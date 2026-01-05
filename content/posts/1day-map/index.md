@@ -37,6 +37,10 @@ image = "images/1day-map.png"
 ### 使用するツール
 QGIS、Foursquare Studio、Mapbox、地図で見る統計（jSTAT MAP）
 
+### 価格
+
+22,000円（税込）
+
 ### 日程
 
 隔週 第2・4土曜日

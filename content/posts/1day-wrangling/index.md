@@ -37,6 +37,10 @@ image = "images/1day-wrangling.png"
 OpenRefine、Colaboratory、IFTTT、Tabula、Googleシート、ChatGPT
 
 
+### 価格
+
+22,000円（税込）
+
 ### 日程
 
 隔週 第2・4日曜日

@@ -27,6 +27,10 @@ image = "images/1day-essentials.png"
 ### 使用するツール
 RawGraph、Flourish、Voyager、Google Colab、そのほか
 
+### 価格
+
+22,000円（税込）
+
 ### 日程
 
 隔週 第1・3土曜日
