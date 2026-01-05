@@ -14,7 +14,8 @@ image = "images/thumb-udemy-data-cleaning.png"
 
 無料ツールOpen Refineを利用したデータクレンジングの実践をどなたにでも。
 
-[データをキレイにする技術 | Udemy](https://www.udemy.com/course/dvl-datarefine-openrefine/?referralCode=00041ED9C10D92C22BCF)
+{{< external-link-card url="https://www.udemy.com/course/dvl-datarefine-openrefine/?referralCode=00041ED9C10D92C22BCF" title="データをキレイにする技術 | Udemy" image="images/thumb-udemy-data-cleaning.png" />}}
+
 
 ## 本コースは、どんな内容か
 

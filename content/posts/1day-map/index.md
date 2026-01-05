@@ -35,7 +35,7 @@ image = "images/1day-map.png"
 - 様々なツールを使い分けることで、アウトプットの幅が広がります。
 
 ### 使用するツール
-QGIS、Foursquare Studio、Mapbox、地図で見る統計（jSTAT MAP）
+QGIS、Foursquare Studio、Mapbox、jSTAT MAP
 
 ### 価格
 
