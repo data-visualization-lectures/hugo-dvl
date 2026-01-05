@@ -1,4 +1,3 @@
-```
 +++
 title = "講習"
 linkTitle = '講習'
