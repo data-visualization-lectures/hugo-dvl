@@ -19,7 +19,10 @@ image = "images/1day-map.png"
 - 講習に利用したPDFファイルとサンプルデータを差し上げます。
 - 講義の録画データをご提供します。繰り返し視聴いただくことで復習に役立てていただけます。
 
-![制作する3D主題地図の例](images/kepler.gl.png)
+
+![コロプレスマップ（階級区分図）](images/colopleth.png)
+
+![スターバックス店舗から500m圏内地図](images/buffer_kotoku_starbucks.png)
 
 ![使用するスライドの一部](images/地図_初級.png)
 
