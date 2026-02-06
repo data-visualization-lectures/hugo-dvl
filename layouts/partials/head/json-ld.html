@@ -1,0 +1,61 @@
+{{ if .IsPage }}
+    {{ $author := .Site.Params.sidebar.author.name }}
+    {{ if .Params.author }}
+        {{ $author = .Params.author }}
+    {{ end }}
+    {{ $image := "" }}
+    {{ if .Params.image }}
+        {{ $image = .Params.image | absURL }}
+    {{ else if .Site.Params.defaultImage.opengraph.src }}
+        {{ $image = .Site.Params.defaultImage.opengraph.src | absURL }}
+    {{ end }}
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": {{ .Title }},
+    "image": "{{ $image }}",
+    "datePublished": "{{ .Date.Format "2006-01-02T15:04:05Z07:00" }}",
+    "dateModified": "{{ .Lastmod.Format "2006-01-02T15:04:05Z07:00" }}",
+    "author": {
+        "@type": "Person",
+        "name": "{{ $author }}"
+    },
+    "publisher": {
+        "@type": "Organization",
+        "name": {{ .Site.Title }},
+        "logo": {
+            "@type": "ImageObject",
+            "url": "{{ .Site.Params.sidebar.avatar.src | absURL }}"
+        }
+    },
+    "description": {{ .Description | default .Summary | plainify }}
+}
+</script>
+{{ end }}
+
+<script type="application/ld+json">
+{
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+    {{ $position := 1 }}
+    {{ range .Ancestors.Reverse }}
+        {
+            "@type": "ListItem",
+            "position": {{ $position }},
+            "name": "{{ if .IsHome }}Home{{ else }}{{ .Title }}{{ end }}",
+            "item": "{{ .Permalink }}"
+        },
+        {{ $position = add $position 1 }}
+    {{ end }}
+        {
+            "@type": "ListItem",
+            "position": {{ $position }},
+            "name": "{{ .Title }}",
+            "item": "{{ .Permalink }}"
+        }
+    ]
+}
+</script>
