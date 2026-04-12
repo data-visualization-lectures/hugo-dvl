@@ -78,11 +78,11 @@ compact = false
 
   [[menus.main]]
   name = '講演・研修'
-  pageRef = '/categories/keynote-training'
+  url = 'https://data-viz-lectures.com/posts/keynote-training/'
   weight = 40
   [[menus.main]]
   name = 'オンデマンド動画'
-  pageRef = '/categories/video-on-demand'
+  url = 'https://data-viz-lectures.com/posts/udemy-data-cleaning/'
   weight = 50
   [[menus.main]]
   name = '受講者の声'
