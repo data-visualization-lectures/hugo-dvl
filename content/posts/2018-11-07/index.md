@@ -8,6 +8,7 @@ categories = [
 ]
 tags = [
 ]
+image = "/images/thumb_ph_vizjp.png"
 +++
 
 ２日間朝から夕方までミッチリと10個のツールを学んでいくという感じのもので、POWER BI、Google colaboratoy、Tabula、QGIS、kepler.gl、Mapboxなどなどを触って実データをクレンジングしたりビジュアライズしたり可視化したりと、とんでもなく得るものが多い講習でした（脳は疲れ果てた）。

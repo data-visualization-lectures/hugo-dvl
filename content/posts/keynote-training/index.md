@@ -9,7 +9,7 @@ categories = [
 ]
 tags = [
 ]
-image = ""
+image = "/images/thumb_ph_vizjp.png"
 +++
 
 

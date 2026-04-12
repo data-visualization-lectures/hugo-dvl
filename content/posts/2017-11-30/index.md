@@ -8,6 +8,7 @@ categories = [
 ]
 tags = [
 ]
+image = "/images/thumb_ph_vizjp.png"
 +++
 
 この講座は「新しい発見があり、説明がとても分かりやすい」でした。

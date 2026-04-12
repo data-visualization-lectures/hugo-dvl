@@ -8,6 +8,7 @@ categories = [
 ]
 tags = [
 ]
+image = "/images/thumb_ph_vizjp.png"
 +++
 
 データビジュアライゼーション・・・その奥深さに見せられる1日。

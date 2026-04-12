@@ -8,6 +8,7 @@ categories = [
 ]
 tags = [
 ]
+image = "/images/thumb_ph_vizjp.png"
 +++
 
 少人数での講習だったので、ふだん疑問に思っていたことや課題に感じていたことを気軽に質問でき、的確にアドバイス頂けました。

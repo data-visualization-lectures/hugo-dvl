@@ -8,6 +8,7 @@ categories = [
 ]
 tags = [
 ]
+image = "/images/thumb_ph_vizjp.png"
 +++
 
 この講座は「当初自分がやりたいことと思ったことを超えていく知識へのアクセスができる講座」でした。

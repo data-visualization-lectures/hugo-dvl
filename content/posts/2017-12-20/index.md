@@ -8,6 +8,7 @@ categories = [
 ]
 tags = [
 ]
+image = "/images/thumb_ph_vizjp.png"
 +++
 
 この講座は「データの取得から加工、可視化まで幅広く学べる講座」でした。

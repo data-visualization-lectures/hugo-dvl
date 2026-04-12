@@ -8,6 +8,7 @@ categories = [
 ]
 tags = [
 ]
+image = "/images/thumb_ph_vizjp.png"
 +++
 
 示唆に富んだ時間だった。やらなきゃいけないことが、グッと解像度高くまとまってきた。
