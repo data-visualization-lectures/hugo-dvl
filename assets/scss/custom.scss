@@ -518,6 +518,60 @@
   overflow-x: visible !important;
 }
 
+/* Course schedule list (rendered by form shortcodes) */
+.course-schedule {
+  max-width: 600px;
+  margin: 2rem auto;
+  padding: 1.5rem 2rem;
+  background: var(--card-background);
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--shadow-l1);
+}
+
+.course-schedule__title {
+  margin: 0 0 1rem 0;
+  font-size: 1.8rem;
+  color: var(--card-text-color-main);
+  border-bottom: 2px solid var(--accent-color);
+  padding-bottom: 0.5rem;
+}
+
+.course-schedule__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  gap: 0.6rem;
+}
+
+.course-schedule__item {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 8px;
+  background: var(--body-background);
+  font-size: 1.5rem;
+}
+
+.course-schedule__date {
+  font-weight: 600;
+  color: var(--card-text-color-main);
+}
+
+.course-schedule__time {
+  font-size: 1.3rem;
+  color: var(--card-text-color-secondary);
+  font-variant-numeric: tabular-nums;
+}
+
+.course-schedule__empty {
+  margin: 0;
+  color: var(--card-text-color-secondary);
+  font-size: 1.4rem;
+}
+
 /* External link icon: sidebar main menu + homepage feature cards */
 .left-sidebar #main-menu > li > a[href^="http"]:not([href*="://data-viz-lectures.com"]) span::after,
 a.feature-card[href^="http"]:not([href*="://data-viz-lectures.com"]) .feature-title::after {

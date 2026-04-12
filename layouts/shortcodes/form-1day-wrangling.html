@@ -1,3 +1,32 @@
+{{- $course := index site.Data.courses "wrangling" -}}
+{{- $weekdayJP := dict "Sun" "日" "Mon" "月" "Tue" "火" "Wed" "水" "Thu" "木" "Fri" "金" "Sat" "土" -}}
+{{- $now := now -}}
+{{- $upcoming := slice -}}
+{{- range $course.schedules -}}
+    {{- $d := time.AsTime . -}}
+    {{- if ge $d $now -}}
+        {{- $upcoming = $upcoming | append $d -}}
+    {{- end -}}
+{{- end -}}
+
+<section class="course-schedule">
+    <h3 class="course-schedule__title">開催日程</h3>
+    {{ if $upcoming }}
+    <ul class="course-schedule__list">
+        {{ range $upcoming }}
+        <li class="course-schedule__item">
+            <time class="course-schedule__date" datetime="{{ .Format "2006-01-02" }}">
+                {{ .Format "2006年01月02日" }}({{ index $weekdayJP (.Format "Mon") }})
+            </time>
+            <span class="course-schedule__time">{{ $course.time }}</span>
+        </li>
+        {{ end }}
+    </ul>
+    {{ else }}
+    <p class="course-schedule__empty">現在、受付中の日程はありません。</p>
+    {{ end }}
+</section>
+
 <style>
     .application-form {
         background: var(--card-background);
@@ -101,14 +130,9 @@
             <label for="schedule" class="form-label">希望日程 <span style="color:red">*</span></label>
             <select id="schedule" name="schedule" class="form-select" required>
                 <option value="">日程を選択してください</option>
-                <option value="2026-03-08">2026年03月08日(日) 10:00-17:00</option>
-                <option value="2026-03-22">2026年03月22日(日) 10:00-17:00</option>
-                <option value="2026-04-12">2026年04月12日(日) 10:00-17:00</option>
-                <option value="2026-04-26">2026年04月26日(日) 10:00-17:00</option>
-                <option value="2026-05-10">2026年05月10日(日) 10:00-17:00</option>
-                <option value="2026-05-24">2026年05月24日(日) 10:00-17:00</option>
-                <option value="2026-06-07">2026年06月07日(日) 10:00-17:00</option>
-                <option value="2026-06-21">2026年06月21日(日) 10:00-17:00</option>
+                {{ range $upcoming }}
+                <option value="{{ .Format "2006-01-02" }}">{{ .Format "2006年01月02日" }}({{ index $weekdayJP (.Format "Mon") }}) {{ $course.time }}</option>
+                {{ end }}
             </select>
         </div>
 
