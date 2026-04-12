@@ -1,0 +1,49 @@
+{{/* Attempt to get image for the current context */}}
+{{ $image := partialCached "helper/image" (dict "Context" .context "Type" .Type) .context.RelPermalink .Type }}
+
+{{/* If no image found and it's a section, try to get the image from the first regular page */}}
+{{ if (and (not $image.exists) (eq .Type "section")) }}
+{{ range first 1 .context.RegularPages }}
+{{ $image = partialCached "helper/image" (dict "Context" . "Type" "article") .RelPermalink "article" }}
+{{ end }}
+{{ end }}
+
+<article class="{{ if $image.exists }}has-image{{ end }} homepage-tile">
+    <a href="{{ .context.RelPermalink }}">
+
+        <div class="article-details">
+            <h2 class="article-title">
+                {{- .context.Title -}}
+            </h2>
+        </div>
+
+        {{ if $image.exists }}
+        <div class="article-image">
+            {{ if $image.resource }}
+            {{- $imageRaw := $image.resource | resources.Fingerprint "md5" -}}
+            {{- $Permalink := $imageRaw.RelPermalink -}}
+            {{- $Width := $imageRaw.Width -}}
+            {{- $Height := $imageRaw.Height -}}
+
+            {{- if .context.Site.Params.imageProcessing.cover.enabled -}}
+            {{- $thumbnail := $imageRaw.Fill .size -}}
+            {{- $Permalink = $thumbnail.RelPermalink -}}
+            {{- $Width = $thumbnail.Width -}}
+            {{- $Height = $thumbnail.Height -}}
+            {{- end -}}
+
+            <img src="{{ $Permalink }}" width="{{ $Width }}" height="{{ $Height }}" loading="lazy"
+                alt="Featured image of post {{ .context.Title }}" {{ with .context.Slug }}data-key="{{ . }}" {{ end }}
+                data-hash="{{ $imageRaw.Data.Integrity }}">
+            {{ else }}
+            <img src="{{ $image.permalink }}" loading="lazy" data-key="{{ .context.Slug }}"
+                data-hash="{{ $image.permalink }}" />
+            {{ end }}
+        </div>
+        {{ end }}
+
+        <div class="article-preview">
+            {{- .context.Summary | plainify | truncate 120 -}}
+        </div>
+    </a>
+</article>

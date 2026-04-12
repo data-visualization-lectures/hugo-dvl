@@ -435,3 +435,85 @@
     }
   }
 }
+
+/* Section Title Spacing */
+.section-title {
+  margin-top: 30px !important;
+}
+
+/* Card UI: Tile Grid Layout */
+.article-list--tile {
+  display: grid !important;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 30px;
+  padding: 10px 0;
+
+  article {
+    width: 100% !important;
+    margin-right: 0 !important;
+    margin-bottom: 0 !important;
+    background-color: transparent !important;
+  }
+}
+
+/* Card UI: Tile Article Structure */
+.article-list--tile article {
+  display: flex !important;
+  flex-direction: column !important;
+  height: auto !important;
+  padding-bottom: 20px !important;
+}
+
+/* Card UI: Title above image */
+.article-list--tile article .article-details {
+  position: relative !important;
+  background: none !important;
+  padding: 0 0 10px 0 !important;
+  order: -1 !important;
+  justify-content: flex-start !important;
+  min-height: auto !important;
+  height: auto !important;
+}
+
+.article-list--tile article .article-title {
+  color: var(--card-text-color-main) !important;
+  font-size: 1.8rem !important;
+  margin: 0 !important;
+}
+
+/* Card UI: Image 16:9 ratio */
+.article-list--tile article .article-image {
+  position: relative !important;
+  width: 100% !important;
+  aspect-ratio: 16 / 9 !important;
+  height: auto !important;
+  margin-bottom: 10px !important;
+  border-radius: var(--card-border-radius);
+  overflow: hidden;
+}
+
+.article-list--tile article .article-image img {
+  opacity: 1 !important;
+  mix-blend-mode: normal !important;
+  filter: none !important;
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: cover !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+}
+
+/* Card UI: Preview text */
+.article-list--tile article .article-preview {
+  font-size: 1.4rem !important;
+  color: var(--card-text-color-secondary) !important;
+  line-height: 1.6 !important;
+  padding: 0 5px !important;
+}
+
+/* Force wrapping for tile list (prevent horizontal scroll) */
+.home-list .article-list--tile {
+  flex-wrap: wrap !important;
+  overflow-x: visible !important;
+}
