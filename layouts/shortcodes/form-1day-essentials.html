@@ -9,24 +9,6 @@
     {{- end -}}
 {{- end -}}
 
-<section class="course-schedule">
-    <h3 class="course-schedule__title">開催日程</h3>
-    {{ if $upcoming }}
-    <ul class="course-schedule__list">
-        {{ range $upcoming }}
-        <li class="course-schedule__item">
-            <time class="course-schedule__date" datetime="{{ .Format "2006-01-02" }}">
-                {{ .Format "2006年01月02日" }}({{ index $weekdayJP (.Format "Mon") }})
-            </time>
-            <span class="course-schedule__time">{{ $course.time }}</span>
-        </li>
-        {{ end }}
-    </ul>
-    {{ else }}
-    <p class="course-schedule__empty">現在、受付中の日程はありません。</p>
-    {{ end }}
-</section>
-
 <style>
     .application-form {
         background: var(--card-background);

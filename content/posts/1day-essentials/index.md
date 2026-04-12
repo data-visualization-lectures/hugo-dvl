@@ -33,7 +33,9 @@ RawGraph、Flourish、Voyager、Google Colab、そのほか
 
 ### 日程
 
-隔週 第1・3土曜日（具体的な日程は、ページ下部「お申し込みフォーム」にございます）
+隔週 第1・3土曜日
+
+{{< course-schedule "essentials" >}}
 
 ### タイムテーブル
 
@@ -89,3 +91,4 @@ ZOOMを利用したオンラインでの開催です。
 お申し込み後、Stripe 決済画面へ移動します。
 
 {{< form-1day-essentials >}}
+

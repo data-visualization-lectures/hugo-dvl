@@ -43,7 +43,9 @@ OpenRefine、Colaboratory、IFTTT、Tabula、Googleシート、ChatGPT
 
 ### 日程
 
-隔週 第2・4日曜日（具体的な日程は、ページ下部「お申し込みフォーム」にございます）
+隔週 第2・4日曜日
+
+{{< course-schedule "wrangling" >}}
 
 
 ### タイムテーブル

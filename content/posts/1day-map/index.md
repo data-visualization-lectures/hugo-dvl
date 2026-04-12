@@ -48,7 +48,9 @@ QGIS、Foursquare Studio、Mapbox、jSTAT MAP
 
 ### 日程
 
-隔週 第2・4土曜日（具体的な日程は、ページ下部「お申し込みフォーム」にございます）
+隔週 第2・4土曜日
+
+{{< course-schedule "map" >}}
 
 ### タイムテーブル
 

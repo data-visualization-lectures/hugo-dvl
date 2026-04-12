@@ -1,0 +1,34 @@
+{{- /*
+    開催日程リスト shortcode
+    使い方: {{< course-schedule "essentials" >}}
+    引数: data/courses.yaml のキー (essentials / map / wrangling など)
+    過去日は now と比較して自動除外される
+*/ -}}
+{{- $key := .Get 0 -}}
+{{- $course := index site.Data.courses $key -}}
+{{- $weekdayJP := dict "Sun" "日" "Mon" "月" "Tue" "火" "Wed" "水" "Thu" "木" "Fri" "金" "Sat" "土" -}}
+{{- $now := now -}}
+{{- $upcoming := slice -}}
+{{- range $course.schedules -}}
+    {{- $d := time.AsTime . -}}
+    {{- if ge $d $now -}}
+        {{- $upcoming = $upcoming | append $d -}}
+    {{- end -}}
+{{- end -}}
+
+<section class="course-schedule">
+    {{ if $upcoming }}
+    <ul class="course-schedule__list">
+        {{ range $upcoming }}
+        <li class="course-schedule__item">
+            <time class="course-schedule__date" datetime="{{ .Format "2006-01-02" }}">
+                {{ .Format "2006年01月02日" }}({{ index $weekdayJP (.Format "Mon") }})
+            </time>
+            <span class="course-schedule__time">{{ $course.time }}</span>
+        </li>
+        {{ end }}
+    </ul>
+    {{ else }}
+    <p class="course-schedule__empty">現在、受付中の日程はありません。</p>
+    {{ end }}
+</section>
