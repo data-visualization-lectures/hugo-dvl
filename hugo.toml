@@ -23,7 +23,7 @@ lightMode = 'auto'
     [params.defaultImage.opengraph]
         enabled = true
         local = false
-        src = "img/avatar.png"
+        src = "/images/avatar.png"
 
     [params.opengraph.twitter]
         site = "visualizing_jp"
@@ -40,13 +40,13 @@ compact = false
 
 [params.sidebar.author]
     name = "矢崎裕一／Yuichi Yazaki"
-    image = "img/avatar.png"
+    image = "/images/avatar.png"
     bio = "株式会社ビジネス・アーキテクツにてユーザー・インターフェイス・デザイナーおよびアート・ディレクターを7年間経験後、独立。企業や教育機関での講義活動、ウェブサイトVisualizing.JPにおける情報発信、コミュニティData Visualization Japanにおけるコミュニティ活動など、データ可視化の実践と普及に関するさまざまな活動をおこなっている。共著書に『RESASの教科書』(日経BP、2016)がある。千葉工業大学デザイン科学修士修了。データ・ビジュアライゼーション・ジャパン発起人/Yahoo!ニュース・エキスパート。"
 
 [params.sidebar.avatar]
     enabled = true
-    local = true
-    src = "img/avatar.png"
+    local = false
+    src = "/images/avatar.png"
 
 [params.widgets]
     [[params.widgets.homepage]]
