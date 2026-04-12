@@ -518,8 +518,9 @@
   overflow-x: visible !important;
 }
 
-/* External link icon in sidebar main menu */
-.left-sidebar #main-menu > li > a[href^="http"]:not([href*="://data-viz-lectures.com"]) span::after {
+/* External link icon: sidebar main menu + homepage feature cards */
+.left-sidebar #main-menu > li > a[href^="http"]:not([href*="://data-viz-lectures.com"]) span::after,
+a.feature-card[href^="http"]:not([href*="://data-viz-lectures.com"]) .feature-title::after {
   content: "";
   display: inline-block;
   width: 0.9em;
