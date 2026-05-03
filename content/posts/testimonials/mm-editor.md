@@ -1,8 +1,9 @@
 +++
 author = "Yuichi Yazaki"
 title = "感想：雑誌編集者 M.M.さん"
-slug = "2018-08-15"
+slug = "mm-editor"
 date = "2018-08-15"
+url = "/posts/2018-08-15/"
 categories = [
     "testimonials"
 ]
@@ -41,4 +42,4 @@ image = "/images/thumb_ph_vizjp.png"
 
 　世界じゅうの人がこういうものを当たり前に使いこなせる時代が来たら、人類は飛躍的に進化する。せっかくこんな時代に生まれたんだし、人類がコツコツ積み重ねてきた叡智を存分に共有して、データを飼い慣らして、人生を最大限謳歌したいよね、というお話。
 
-![M.M.さん](images/MMさん.png "width=30%")
+![M.M.さん](/images/testimonials/mm-editor.png "width=30%")

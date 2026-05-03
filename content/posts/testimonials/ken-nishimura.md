@@ -1,8 +1,9 @@
 +++
 author = "Yuichi Yazaki"
 title = "感想：日本公共利益研究所 西村健さん"
-slug = "2018-08-01"
+slug = "ken-nishimura"
 date = "2018-08-01"
+url = "/posts/2018-08-01/"
 categories = [
     "testimonials"
 ]
@@ -22,4 +23,4 @@ image = "/images/thumb_ph_vizjp.png"
 データビジュアライゼーションの扉を一緒に開きましょう。優しい半ズボンと帽子のお兄さんと新しい世界へ！
 
 
-![西村健さん](images/西村健さん.png "width=30%")
+![西村健さん](/images/testimonials/ken-nishimura.png "width=30%")

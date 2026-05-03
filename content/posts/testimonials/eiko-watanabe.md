@@ -1,8 +1,9 @@
 +++
 author = "Yuichi Yazaki"
 title = "感想：東村山市議会  東村山市日中友好協会 渡辺英子さん"
-slug = "2018-07-30"
+slug = "eiko-watanabe"
 date = "2018-07-30"
+url = "/posts/2018-07-30/"
 categories = [
     "testimonials"
 ]

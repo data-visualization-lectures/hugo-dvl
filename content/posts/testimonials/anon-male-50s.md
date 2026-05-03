@@ -1,8 +1,9 @@
 +++
 author = "Yuichi Yazaki"
 title = "感想：匿名・50代の男性"
-slug = "2023-07-15"
+slug = "anon-male-50s"
 date = "2023-07-15"
+url = "/posts/2023-07-15/"
 categories = [
     "testimonials"
 ]

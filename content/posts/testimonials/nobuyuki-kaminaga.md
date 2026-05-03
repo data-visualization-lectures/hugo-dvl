@@ -1,8 +1,9 @@
 +++
 author = "Yuichi Yazaki"
 title = "感想：ミイダス株式会社 HRサイエンス研究所 所長 神長 伸幸さん"
-slug = "2023-09-15"
+slug = "nobuyuki-kaminaga"
 date = "2023-09-15"
+url = "/posts/2023-09-15/"
 categories = [
     "testimonials"
 ]

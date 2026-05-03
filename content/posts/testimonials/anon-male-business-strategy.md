@@ -1,8 +1,9 @@
 +++
 author = "Yuichi Yazaki"
 title = "感想：匿名・30代の男性（経営戦略・事業戦略）"
-slug = "2024-04-25"
+slug = "anon-male-business-strategy"
 date = "2024-04-25"
+url = "/posts/2024-04-25/"
 categories = [
     "testimonials"
 ]

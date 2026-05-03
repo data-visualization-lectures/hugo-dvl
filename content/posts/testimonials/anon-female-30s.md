@@ -1,8 +1,9 @@
 +++
 author = "Yuichi Yazaki"
 title = "感想：匿名・30代の女性"
-slug = "2017-11-30"
+slug = "anon-female-30s"
 date = "2017-11-30"
+url = "/posts/2017-11-30/"
 categories = [
     "testimonials"
 ]

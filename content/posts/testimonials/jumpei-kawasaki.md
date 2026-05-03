@@ -1,8 +1,9 @@
 +++
 author = "Yuichi Yazaki"
 title = "感想：博報堂アイ・スタジオ Creative technologist 川崎 順平さん"
-slug = "2018-11-07"
+slug = "jumpei-kawasaki"
 date = "2018-11-07"
+url = "/posts/2018-11-07/"
 categories = [
     "testimonials"
 ]
@@ -20,4 +21,4 @@ image = "/images/thumb_ph_vizjp.png"
 
 データ使いは一度学ぶと、より知識をつけて次のステップに進みたくなる内容なので、「応用編」などのレベル分けあったらまた参加したいです！
 
-![川崎順平さん](images/川崎順平さん.png "width=30%")
+![川崎順平さん](/images/testimonials/jumpei-kawasaki.png "width=30%")
