@@ -4,18 +4,24 @@
 
 [build.environment]
   HUGO_VERSION = "0.152.0"
-  HUGO_ENV = "production"
   HUGO_ENABLEGITINFO = "true"
   TZ = "Asia/Tokyo"
 
 [context.production]
   command = "git submodule update --init --recursive && hugo --gc -b ${URL}"
+  [context.production.environment]
+    HUGO_ENV = "production"
+    HUGO_SERVICES_GOOGLEANALYTICS_ID = "G-GGNSDEK3RD"
 
 [context.branch-deploy]
   command = "git submodule update --init --recursive && hugo --gc -b ${DEPLOY_PRIME_URL}"
+  [context.branch-deploy.environment]
+    HUGO_ENV = "preview"
 
 [context.deploy-preview]
   command = "git submodule update --init --recursive && hugo --gc -b ${DEPLOY_PRIME_URL}"
+  [context.deploy-preview.environment]
+    HUGO_ENV = "preview"
 
 [[plugins]]
   package = "netlify-plugin-hugo-cache-resources"

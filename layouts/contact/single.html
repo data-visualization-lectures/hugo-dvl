@@ -32,5 +32,23 @@
             <button type="submit" class="button primary">送信する</button>
         </form>
     </section>
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const form = document.querySelector('form[name="contact"]');
+            if (!form) {
+                return;
+            }
+
+            form.addEventListener('submit', function () {
+                try {
+                    if (window.sessionStorage) {
+                        sessionStorage.setItem('dvl_pending_contact_lead', '1');
+                    }
+                } catch (error) {
+                    console.warn('Failed to prepare contact lead tracking.', error);
+                }
+            });
+        });
+    </script>
 </article>
 {{ end }}

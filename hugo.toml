@@ -14,6 +14,10 @@ enableRobotsTXT = true
 [pagination]
 pagerSize = 10
 
+[privacy]
+  [privacy.googleAnalytics]
+    respectDoNotTrack = true
+
 [params]
 description = '本講習は、マーケティング、セールスなどのビジネスパーソンや、デザイナー、エンジニアなどのクリエイター、企業経営者、コンサルタント、行政関係者、議会議員など、データ活用に関わる全ての職業の方を対象にしています。'
 mainSections = ['posts']

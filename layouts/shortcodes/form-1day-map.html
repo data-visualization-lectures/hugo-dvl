@@ -135,34 +135,56 @@
 </div>
 
 <script>
-    document.getElementById('app-form').addEventListener('submit', function (e) {
-        e.preventDefault();
+    (() => {
+        const applicationForm = document.getElementById('app-form');
+        const stripeLink = document.querySelector('#payment-area .btn-stripe');
+        const analyticsParams = {
+            form_name: 'bootcamp-application',
+            course_name: '一日講習 地図とデータ可視化',
+            content_category: 'bootcamp-1day'
+        };
 
-        const form = e.target;
-        const formData = new FormData(form);
-
-        // Netlifyへデータを送信
-        fetch("/", {
-            method: "POST",
-            headers: { "Content-Type": "application/x-www-form-urlencoded" },
-            body: new URLSearchParams(formData).toString()
-        })
-            .then(() => {
-                console.log("Form successfully submitted");
-
-                // 送信成功時のUI切り替え
-                const paymentArea = document.getElementById('payment-area');
-
-                // フォームを非表示にして決済ボタンを表示
-                form.style.display = 'none';
-                paymentArea.style.display = 'block';
-
-                // ページトップへスクロール（フォームが長い場合のため）
-                document.getElementById('application-container').scrollIntoView({ behavior: 'smooth' });
-            })
-            .catch((error) => {
-                alert("送信に失敗しました。時間をおいて再度お試しください。");
-                console.error(error);
+        if (stripeLink) {
+            stripeLink.addEventListener('click', function () {
+                if (typeof window.dvlTrack === 'function') {
+                    window.dvlTrack('begin_checkout', analyticsParams);
+                }
             });
-    });
+        }
+
+        applicationForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submittedForm = e.target;
+            const formData = new FormData(submittedForm);
+
+            // Netlifyへデータを送信
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+                .then(() => {
+                    console.log("Form successfully submitted");
+
+                    // 送信成功時のUI切り替え
+                    const paymentArea = document.getElementById('payment-area');
+
+                    // フォームを非表示にして決済ボタンを表示
+                    submittedForm.style.display = 'none';
+                    paymentArea.style.display = 'block';
+
+                    if (typeof window.dvlTrack === 'function') {
+                        window.dvlTrack('generate_lead', analyticsParams);
+                    }
+
+                    // ページトップへスクロール（フォームが長い場合のため）
+                    document.getElementById('application-container').scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch((error) => {
+                    alert("送信に失敗しました。時間をおいて再度お試しください。");
+                    console.error(error);
+                });
+        });
+    })();
 </script>
