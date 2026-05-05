@@ -9,7 +9,7 @@ categories = [
 ]
 tags = [
 ]
-image = "images/spotify_jpop_kpop.png"
+image = "images/dvs_title_ai-coding_basic.png"
 summary = "初学者向けの入門講座。ChatGPT、Claude、Gemini などのコーディング支援モデルを使い、対話から始めて操作できるチャートを作ります。"
 +++
 
