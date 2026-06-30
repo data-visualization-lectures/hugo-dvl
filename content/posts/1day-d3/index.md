@@ -17,6 +17,9 @@ image = "images/1day-d3.png"
 ### 差し上げます
 
 - 講習に利用したPDFファイルとサンプルコード・サンプルデータを差し上げます。
+- 講習の内容を網羅したエージェント・スキルズ（Agent Skills）ファイルを差し上げます。
+  - エージェント・スキルズとは、AIが特定のタスクを効率的・専門的にこなすための「拡張機能」や「専門能力」のことを指します。Claude Code、OpenAI Codex、Google Antigravity、GitHub Copilot、Cursorなどに対応しています。
+  - 対応しているプロダクト一覧：[Client Showcase - Agent Skills](https://agentskills.io/clients)
 - 講義の録画データをご提供します。繰り返し視聴いただくことで復習に役立てていただけます。
 
 
