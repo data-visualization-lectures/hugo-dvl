@@ -89,6 +89,10 @@ compact = false
   url = 'https://data-viz-lectures.com/posts/udemy-data-cleaning/'
   weight = 50
   [[menus.main]]
+  name = 'よくある質問'
+  pageRef = '/pages/faq'
+  weight = 55
+  [[menus.main]]
   name = '受講者の声'
   pageRef = '/categories/testimonials'
   weight = 60
