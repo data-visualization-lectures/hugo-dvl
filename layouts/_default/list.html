@@ -55,7 +55,7 @@
     <div class="subsection-list">
         <div class="article-list--tile">
             {{ range . }}
-            {{ partial "article-list/tile" (dict "context" . "size" "250x150" "Type" "section") }}
+            {{ partial "article-list/tile" (dict "context" . "size" "640x360" "Type" "section") }}
             {{ end }}
         </div>
     </div>
@@ -65,7 +65,7 @@
 {{ $paginator := .Paginate $pages }}
 <section class="article-list--tile">
     {{ range $paginator.Pages }}
-    {{ partial "article-list/tile-compact" (dict "context" . "size" "250x150" "Type" "article") }}
+    {{ partial "article-list/tile-compact" (dict "context" . "size" "640x360" "Type" "article") }}
     {{ end }}
 </section>
 
