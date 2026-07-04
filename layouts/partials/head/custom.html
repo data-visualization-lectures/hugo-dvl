@@ -21,4 +21,81 @@
     }
 </script>
 {{ end }}
+{{ if eq .RelPermalink "/pages/checkout-complete/" }}
+<script>
+    (() => {
+        const query = new URLSearchParams(window.location.search);
+        const sessionId = query.get('session_id');
+
+        if (!sessionId || !sessionId.startsWith('cs_')) {
+            return;
+        }
+
+        const trackedKey = `dvl_purchase_tracked_${sessionId}`;
+
+        try {
+            if (window.localStorage && localStorage.getItem(trackedKey) === '1') {
+                return;
+            }
+        } catch (error) {
+            console.warn('Failed to read purchase tracking state.', error);
+        }
+
+        fetch(`/.netlify/functions/stripe-checkout?session_id=${encodeURIComponent(sessionId)}`)
+            .then((response) => {
+                if (!response.ok) {
+                    throw new Error('Checkout Session retrieval failed.');
+                }
+
+                return response.json();
+            })
+            .then((session) => {
+                if (!session || session.payment_status !== 'paid') {
+                    return;
+                }
+
+                const metadata = session.metadata || {};
+                const value = typeof session.amount_total === 'number' ? session.amount_total : undefined;
+                const currency = (session.currency || 'jpy').toUpperCase();
+                const courseKey = metadata.course_key || query.get('course_key') || '';
+                const courseName = metadata.course_name || courseKey || 'データ可視化講習';
+                const contentCategory = metadata.content_category || '';
+                const schedule = metadata.schedule || query.get('schedule') || '';
+
+                if (typeof window.dvlTrack === 'function') {
+                    window.dvlTrack('purchase', {
+                        transaction_id: session.id,
+                        affiliation: 'Stripe Checkout',
+                        value,
+                        currency,
+                        course_key: courseKey,
+                        course_name: courseName,
+                        content_category: contentCategory,
+                        schedule,
+                        items: [
+                            {
+                                item_id: courseKey,
+                                item_name: courseName,
+                                item_category: contentCategory,
+                                price: value,
+                                quantity: 1
+                            }
+                        ]
+                    });
+                }
+
+                try {
+                    if (window.localStorage) {
+                        localStorage.setItem(trackedKey, '1');
+                    }
+                } catch (error) {
+                    console.warn('Failed to save purchase tracking state.', error);
+                }
+            })
+            .catch((error) => {
+                console.warn('Failed to track purchase completion.', error);
+            });
+    })();
+</script>
+{{ end }}
 {{ partial "head/json-ld.html" . }}

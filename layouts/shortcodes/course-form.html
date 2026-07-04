@@ -32,6 +32,7 @@
         <input type="hidden" name="course" value="{{ $course.title }}" />
         <input type="hidden" name="price" value="{{ $course.price }}" />
         <input type="hidden" name="capacity" value="{{ $course.capacity }}" />
+        <input type="hidden" name="page_path" value="{{ .Page.RelPermalink }}" />
 
         <h3 class="application-form__title">お申し込みフォーム</h3>
 
@@ -59,9 +60,9 @@
     </form>
 
     <div id="{{ $paymentId }}" class="payment-area" hidden>
-        <p class="payment-message">お申し込みありがとうございます。<br>以下のボタンより決済のお手続きをお願いいたします。</p>
+        <p class="payment-message">お申し込み内容は送信されました。<br>決済ページの自動作成に失敗したため、以下のボタンより決済のお手続きをお願いいたします。</p>
         <p class="payment-note">※ 決済完了をもって正式な受付となります。</p>
-        <a href="{{ $course.stripe_url }}" target="_blank" rel="noopener noreferrer" class="btn-stripe">
+        <a href="{{ $course.stripe_url }}" rel="noopener noreferrer" class="btn-stripe">
             決済へ進む (Stripe)
         </a>
     </div>
@@ -79,13 +80,52 @@
             course_name: {{ $course.analytics_course_name | jsonify }},
             content_category: {{ $course.content_category | jsonify }}
         };
-        const analyticsParams = () => {
-            const formData = applicationForm ? new FormData(applicationForm) : null;
+        const analyticsParams = (sourceFormData) => {
+            const formData = sourceFormData || (applicationForm ? new FormData(applicationForm) : null);
             return {
                 ...baseAnalyticsParams,
                 schedule: formData ? formData.get('schedule') : undefined
             };
         };
+        const setSubmitting = (button, isSubmitting) => {
+            if (!button) {
+                return;
+            }
+
+            if (!button.dataset.originalText) {
+                button.dataset.originalText = button.textContent;
+            }
+
+            button.disabled = isSubmitting;
+            button.textContent = isSubmitting ? '決済ページを準備中...' : button.dataset.originalText;
+        };
+        const showPaymentFallback = () => {
+            applicationForm.hidden = true;
+            paymentArea.hidden = false;
+            applicationContainer.scrollIntoView({ behavior: 'smooth' });
+        };
+        const postNetlifyForm = (formData) => fetch("/", {
+            method: "POST",
+            headers: { "Content-Type": "application/x-www-form-urlencoded" },
+            body: new URLSearchParams(formData).toString()
+        });
+        const createCheckoutSession = (formData) => fetch("/.netlify/functions/stripe-checkout", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({
+                course_key: formData.get('course_key'),
+                schedule: formData.get('schedule'),
+                name: formData.get('name'),
+                email: formData.get('email'),
+                page_path: formData.get('page_path')
+            })
+        }).then((response) => {
+            if (!response.ok) {
+                throw new Error('Checkout Session creation failed.');
+            }
+
+            return response.json();
+        });
 
         if (!applicationForm || !paymentArea || !applicationContainer) {
             return;
@@ -99,31 +139,54 @@
             });
         }
 
-        applicationForm.addEventListener('submit', function (e) {
+        applicationForm.addEventListener('submit', async function (e) {
             e.preventDefault();
 
             const submittedForm = e.target;
             const formData = new FormData(submittedForm);
+            const submitButton = submittedForm.querySelector('.btn-submit');
+            let leadCaptured = false;
 
-            fetch("/", {
-                method: "POST",
-                headers: { "Content-Type": "application/x-www-form-urlencoded" },
-                body: new URLSearchParams(formData).toString()
-            })
-                .then(() => {
-                    submittedForm.hidden = true;
-                    paymentArea.hidden = false;
+            setSubmitting(submitButton, true);
 
-                    if (typeof window.dvlTrack === 'function') {
-                        window.dvlTrack('generate_lead', analyticsParams());
-                    }
+            try {
+                const formResponse = await postNetlifyForm(formData);
 
-                    applicationContainer.scrollIntoView({ behavior: 'smooth' });
-                })
-                .catch((error) => {
-                    alert("送信に失敗しました。時間をおいて再度お試しください。");
+                if (!formResponse.ok) {
+                    throw new Error('Netlify form submission failed.');
+                }
+
+                leadCaptured = true;
+
+                if (typeof window.dvlTrack === 'function') {
+                    window.dvlTrack('generate_lead', analyticsParams(formData));
+                }
+
+                const checkoutSession = await createCheckoutSession(formData);
+
+                if (!checkoutSession || !checkoutSession.url) {
+                    throw new Error('Checkout Session URL is missing.');
+                }
+
+                if (typeof window.dvlTrack === 'function') {
+                    window.dvlTrack('begin_checkout', {
+                        ...analyticsParams(formData),
+                        checkout_session_id: checkoutSession.id
+                    });
+                }
+
+                window.location.assign(checkoutSession.url);
+            } catch (error) {
+                if (leadCaptured) {
                     console.error(error);
-                });
+                    showPaymentFallback();
+                    return;
+                }
+
+                setSubmitting(submitButton, false);
+                alert("送信に失敗しました。時間をおいて再度お試しください。");
+                console.error(error);
+            }
         });
     })();
 </script>
