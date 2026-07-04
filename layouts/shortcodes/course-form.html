@@ -25,7 +25,7 @@
 {{- $scheduleId := printf "schedule-%s" $key -}}
 
 <div id="{{ $containerId }}" class="application-container">
-    <form id="{{ $formId }}" class="application-form" name="bootcamp-application" method="POST" data-netlify="true">
+    <form id="{{ $formId }}" class="application-form" name="bootcamp-application" method="POST" action="/pages/application-received/" data-netlify="true">
         <input type="hidden" name="form-name" value="bootcamp-application" />
         <input type="hidden" name="subject" value="{{ $course.subject }}" />
         <input type="hidden" name="course_key" value="{{ $key }}" />
@@ -70,15 +70,15 @@
 
 <script>
     (() => {
-        const applicationForm = document.getElementById({{ $formId | jsonify }});
-        const paymentArea = document.getElementById({{ $paymentId | jsonify }});
-        const applicationContainer = document.getElementById({{ $containerId | jsonify }});
+        const applicationForm = document.getElementById({{ $formId | jsonify | safeJS }});
+        const paymentArea = document.getElementById({{ $paymentId | jsonify | safeJS }});
+        const applicationContainer = document.getElementById({{ $containerId | jsonify | safeJS }});
         const stripeLink = paymentArea ? paymentArea.querySelector('.btn-stripe') : null;
         const baseAnalyticsParams = {
             form_name: 'bootcamp-application',
-            course_key: {{ $key | jsonify }},
-            course_name: {{ $course.analytics_course_name | jsonify }},
-            content_category: {{ $course.content_category | jsonify }}
+            course_key: {{ $key | jsonify | safeJS }},
+            course_name: {{ $course.analytics_course_name | jsonify | safeJS }},
+            content_category: {{ $course.content_category | jsonify | safeJS }}
         };
         const analyticsParams = (sourceFormData) => {
             const formData = sourceFormData || (applicationForm ? new FormData(applicationForm) : null);
