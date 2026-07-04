@@ -38,7 +38,7 @@
         <img src="{{ $authorImage | absURL }}" alt="{{ $authorName }}"
             style="width: 36px; height: 36px; border-radius: 50%; object-fit: cover;">
         {{ end }}
-        <span class="article-author-name" style="font-weight: 500; font-size: 1rem;">{{ $authorName }}</span>
+        <span class="article-author-name" style="font-weight: 500; font-size: 1rem; color: var(--card-text-color-secondary);">{{ $authorName }}</span>
     </div>
 
     {{ $showReadingTime := .Params.readingTime | default (.Site.Params.article.readingTime) }}

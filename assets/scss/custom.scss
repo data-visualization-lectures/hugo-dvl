@@ -5,6 +5,10 @@
   --article-font-family: "Noto Sans JP", var(--sys-font-family), var(--zh-font-family), sans-serif;
 }
 
+body {
+  color: var(--body-text-color);
+}
+
 .hero-block {
   display: flex;
   flex-direction: column;
@@ -155,6 +159,17 @@
 }
 
 .contact-page {
+  color: var(--card-text-color-main);
+
+  .article-header h1 {
+    color: var(--card-text-color-main);
+  }
+
+  .article-subtitle,
+  .article-content {
+    color: var(--card-text-color-secondary);
+  }
+
   .contact-form-section {
     margin-top: 2.5rem;
   }
