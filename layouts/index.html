@@ -1,174 +1,43 @@
 {{ define "main" }}
-<style>
-    .lp-container {
-        display: flex;
-        flex-direction: column;
-        gap: 4rem;
-        padding: 2rem 0;
-        color: var(--card-text-color-main);
-    }
-
-    /* Hero Section */
-    .hero {
-        display: grid;
-        grid-template-columns: 1fr 2fr;
-        align-items: center;
-        gap: 2rem;
-        min-height: 400px;
-    }
-
-    @media (max-width: 768px) {
-        .hero {
-            grid-template-columns: 1fr;
-            text-align: center;
-        }
-
-        .hero-content {
-            /* Adjust order if necessary, but grid structure handles it naturally */
-        }
-
-        .hero-image {
-            order: -1;
-            /* Ensure image is on top on mobile */
-        }
-    }
-
-    .hero-content {
-        flex: 1;
-    }
-
-    .hero-title {
-        font-size: 4rem;
-        font-weight: 800;
-        line-height: 1.1;
-        margin-bottom: 1rem;
-        color: #10B981;
-        /* Stack Green */
-    }
-
-    .hero-subtitle {
-        font-size: 2rem;
-        font-weight: 700;
-        margin-bottom: 2rem;
-        line-height: 1.3;
-    }
-
-    .hero-buttons {
-        display: flex;
-        gap: 1rem;
-        flex-wrap: wrap;
-    }
-
-    @media (max-width: 768px) {
-        .hero-buttons {
-            justify-content: center;
-        }
-    }
-
-
-
-    .hero-image {
-        flex: 1;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        width: 100%;
-    }
-
-    .hero-image img {
-        max-width: 100%;
-        height: auto;
-        border-radius: 20px;
-    }
-
-    /* Features Section */
-    .features {
-        display: grid;
-        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-        gap: 2rem;
-    }
-
-    @media (max-width: 768px) {
-        .features {
-            grid-template-columns: 1fr;
-        }
-    }
-
-    .feature-card {
-        background: var(--card-background);
-        padding: 2rem;
-        border-radius: 12px;
-        box-shadow: var(--shadow-l1);
-        transition: transform 0.2s;
-    }
-
-    .feature-card:hover {
-        transform: translateY(-5px);
-    }
-
-    .feature-icon {
-        font-size: 2rem;
-        margin-bottom: 0.5rem;
-        display: inline-block;
-        padding: 0.5rem;
-        background: rgba(16, 185, 129, 0.1);
-        border-radius: 8px;
-        color: #10B981;
-    }
-
-    .feature-title {
-        font-size: 1.5rem;
-        font-weight: 700;
-        margin-bottom: 1rem;
-    }
-
-    .feature-desc {
-        line-height: 1.6;
-        color: var(--body-text-color);
-    }
-</style>
-
 <div class="lp-container">
     <!-- Hero -->
-    <section class="hero">
-        <div class="hero-content">
-            <h1 class="hero-title">データ可視化講習</h1>
-            <p class="hero-subtitle">日本で唯一の本格的な<br>データ可視化を学べる講習です。</p>
-            <div class="hero-buttons">
+    <section class="home-hero">
+        <div class="home-hero__content">
+            <h1 class="home-hero__title">データ可視化講習</h1>
+            <p class="home-hero__subtitle">日本で唯一の本格的な<br>データ可視化を学べる講習です。</p>
+            <div class="home-hero__buttons">
                 <a href="/pages/about-this-course" class="button primary">本講習について</a>
                 <a href="/pages/about/" class="button secondary">主宰者について</a>
             </div>
         </div>
-        <div class="hero-image">
-            <!-- Placeholder for the illustration -->
-            <img src="/images/cover-top.png" alt="Hero Image" style="width: 100%; height: auto; border-radius: 20px;">
+        <div class="home-hero__image">
+            <img src="/images/cover-top.png" alt="データ可視化講習のカバー画像">
         </div>
     </section>
 
     <!-- Features -->
-    <section class="features">
-        <a href="/categories/course" class="feature-card" style="text-decoration: none; color: inherit;">
-            <div class="feature-icon">⚡</div>
-            <h3 class="feature-title">講習</h3>
-            <p class="feature-desc">データ可視化の基礎理論から実践までを集中的に学ぶ講習です。初学者に最適です。</p>
+    <section class="home-features">
+        <a href="/categories/course" class="home-feature-card">
+            <div class="home-feature-card__icon">⚡</div>
+            <h3 class="home-feature-card__title">講習</h3>
+            <p class="home-feature-card__desc">データ可視化の基礎理論から実践までを集中的に学ぶ講習です。初学者に最適です。</p>
         </a>
 
-        <a href="https://personal.data-viz-lectures.com/" class="feature-card"
-            style="text-decoration: none; color: inherit;" target="_blank" rel="noopener noreferrer">
-            <div class="feature-icon">🏃</div>
-            <h3 class="feature-title">伴走</h3>
-            <p class="feature-desc">一斉講義ではなく、個別課題とマンツーマンの対話・フィードバックで伴走します。「脱エクセル」を目指し、伝わるデータ表現の選び方を身につけるサービスです。</p>
+        <a href="https://personal.data-viz-lectures.com/" class="home-feature-card" target="_blank" rel="noopener noreferrer">
+            <div class="home-feature-card__icon">🏃</div>
+            <h3 class="home-feature-card__title">伴走</h3>
+            <p class="home-feature-card__desc">一斉講義ではなく、個別課題とマンツーマンの対話・フィードバックで伴走します。「脱エクセル」を目指し、伝わるデータ表現の選び方を身につけるサービスです。</p>
         </a>
 
-        <a href="/categories/keynote-training" class="feature-card" style="text-decoration: none; color: inherit;">
-            <div class="feature-icon">🎤</div>
-            <h3 class="feature-title">講演・研修</h3>
-            <p class="feature-desc">企業や団体向けのカスタマイズされた研修や講演を行います。組織全体のデータ活用リテラシー向上に貢献します。</p>
+        <a href="/categories/keynote-training" class="home-feature-card">
+            <div class="home-feature-card__icon">🎤</div>
+            <h3 class="home-feature-card__title">講演・研修</h3>
+            <p class="home-feature-card__desc">企業や団体向けのカスタマイズされた研修や講演を行います。組織全体のデータ活用リテラシー向上に貢献します。</p>
         </a>
-        <a href="/categories/video-on-demand" class="feature-card" style="text-decoration: none; color: inherit;">
-            <div class="feature-icon">📺</div>
-            <h3 class="feature-title">オンデマンド動画</h3>
-            <p class="feature-desc">場所や時間を選ばずに自分のペースで学習できる、高品質な動画コンテンツを提供しています。</p>
+        <a href="/categories/video-on-demand" class="home-feature-card">
+            <div class="home-feature-card__icon">📺</div>
+            <h3 class="home-feature-card__title">オンデマンド動画</h3>
+            <p class="home-feature-card__desc">場所や時間を選ばずに自分のペースで学習できる、高品質な動画コンテンツを提供しています。</p>
         </a>
     </section>
 
