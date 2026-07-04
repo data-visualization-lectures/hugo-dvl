@@ -90,5 +90,4 @@ ZOOMを利用したオンラインでの開催です。
 以下のフォームよりお申し込みください。
 お申し込み後、Stripe 決済画面へ移動します。
 
-{{< form-1day-essentials >}}
-
+{{< course-form "essentials" >}}

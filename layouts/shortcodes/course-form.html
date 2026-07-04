@@ -1,0 +1,129 @@
+{{- /*
+    Course application form shortcode
+    Usage: {{< course-form "essentials" >}}
+*/ -}}
+{{- $key := .Get 0 -}}
+{{- $course := index site.Data.courses $key -}}
+{{- if not $course -}}
+    {{- errorf "course-form shortcode: unknown course key %q" $key -}}
+{{- end -}}
+{{- $weekdayJP := dict "Sun" "日" "Mon" "月" "Tue" "火" "Wed" "水" "Thu" "木" "Fri" "金" "Sat" "土" -}}
+{{- $now := now -}}
+{{- $upcoming := slice -}}
+{{- range $course.schedules -}}
+    {{- $d := time.AsTime . -}}
+    {{- if ge $d $now -}}
+        {{- $upcoming = $upcoming | append $d -}}
+    {{- end -}}
+{{- end -}}
+
+{{- $containerId := printf "application-container-%s" $key -}}
+{{- $formId := printf "app-form-%s" $key -}}
+{{- $paymentId := printf "payment-area-%s" $key -}}
+{{- $nameId := printf "name-%s" $key -}}
+{{- $emailId := printf "email-%s" $key -}}
+{{- $scheduleId := printf "schedule-%s" $key -}}
+
+<div id="{{ $containerId }}" class="application-container">
+    <form id="{{ $formId }}" class="application-form" name="bootcamp-application" method="POST" data-netlify="true">
+        <input type="hidden" name="form-name" value="bootcamp-application" />
+        <input type="hidden" name="subject" value="{{ $course.subject }}" />
+        <input type="hidden" name="course_key" value="{{ $key }}" />
+        <input type="hidden" name="course" value="{{ $course.title }}" />
+        <input type="hidden" name="price" value="{{ $course.price }}" />
+        <input type="hidden" name="capacity" value="{{ $course.capacity }}" />
+
+        <h3 class="application-form__title">お申し込みフォーム</h3>
+
+        <div class="form-group">
+            <label for="{{ $nameId }}" class="form-label">お名前 <span class="required-marker">*</span></label>
+            <input type="text" id="{{ $nameId }}" name="name" class="form-control" required placeholder="山田 太郎">
+        </div>
+
+        <div class="form-group">
+            <label for="{{ $emailId }}" class="form-label">メールアドレス <span class="required-marker">*</span></label>
+            <input type="email" id="{{ $emailId }}" name="email" class="form-control" required placeholder="email@example.com">
+        </div>
+
+        <div class="form-group">
+            <label for="{{ $scheduleId }}" class="form-label">希望日程 <span class="required-marker">*</span></label>
+            <select id="{{ $scheduleId }}" name="schedule" class="form-select" required{{ if not $upcoming }} disabled{{ end }}>
+                <option value="">{{ if $upcoming }}日程を選択してください{{ else }}現在、受付中の日程はありません{{ end }}</option>
+                {{ range $upcoming }}
+                <option value="{{ .Format "2006-01-02" }}">{{ .Format "2006年01月02日" }}({{ index $weekdayJP (.Format "Mon") }}) {{ $course.time }}</option>
+                {{ end }}
+            </select>
+        </div>
+
+        <button type="submit" class="btn-submit"{{ if not $upcoming }} disabled{{ end }}>上記の内容で申し込む</button>
+    </form>
+
+    <div id="{{ $paymentId }}" class="payment-area" hidden>
+        <p class="payment-message">お申し込みありがとうございます。<br>以下のボタンより決済のお手続きをお願いいたします。</p>
+        <p class="payment-note">※ 決済完了をもって正式な受付となります。</p>
+        <a href="{{ $course.stripe_url }}" target="_blank" rel="noopener noreferrer" class="btn-stripe">
+            決済へ進む (Stripe)
+        </a>
+    </div>
+</div>
+
+<script>
+    (() => {
+        const applicationForm = document.getElementById({{ $formId | jsonify }});
+        const paymentArea = document.getElementById({{ $paymentId | jsonify }});
+        const applicationContainer = document.getElementById({{ $containerId | jsonify }});
+        const stripeLink = paymentArea ? paymentArea.querySelector('.btn-stripe') : null;
+        const baseAnalyticsParams = {
+            form_name: 'bootcamp-application',
+            course_key: {{ $key | jsonify }},
+            course_name: {{ $course.analytics_course_name | jsonify }},
+            content_category: {{ $course.content_category | jsonify }}
+        };
+        const analyticsParams = () => {
+            const formData = applicationForm ? new FormData(applicationForm) : null;
+            return {
+                ...baseAnalyticsParams,
+                schedule: formData ? formData.get('schedule') : undefined
+            };
+        };
+
+        if (!applicationForm || !paymentArea || !applicationContainer) {
+            return;
+        }
+
+        if (stripeLink) {
+            stripeLink.addEventListener('click', function () {
+                if (typeof window.dvlTrack === 'function') {
+                    window.dvlTrack('begin_checkout', analyticsParams());
+                }
+            });
+        }
+
+        applicationForm.addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const submittedForm = e.target;
+            const formData = new FormData(submittedForm);
+
+            fetch("/", {
+                method: "POST",
+                headers: { "Content-Type": "application/x-www-form-urlencoded" },
+                body: new URLSearchParams(formData).toString()
+            })
+                .then(() => {
+                    submittedForm.hidden = true;
+                    paymentArea.hidden = false;
+
+                    if (typeof window.dvlTrack === 'function') {
+                        window.dvlTrack('generate_lead', analyticsParams());
+                    }
+
+                    applicationContainer.scrollIntoView({ behavior: 'smooth' });
+                })
+                .catch((error) => {
+                    alert("送信に失敗しました。時間をおいて再度お試しください。");
+                    console.error(error);
+                });
+        });
+    })();
+</script>

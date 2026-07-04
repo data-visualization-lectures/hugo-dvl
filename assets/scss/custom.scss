@@ -34,6 +34,116 @@
   margin-bottom: 0.75rem;
 }
 
+.lp-container {
+  display: flex;
+  flex-direction: column;
+  gap: 4rem;
+  padding: 2rem 0;
+  color: var(--card-text-color-main);
+}
+
+.home-hero {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  align-items: center;
+  gap: 2rem;
+  min-height: 400px;
+}
+
+.home-hero__title {
+  font-size: 4rem;
+  font-weight: 800;
+  line-height: 1.1;
+  margin-bottom: 1rem;
+  color: #10b981;
+}
+
+.home-hero__subtitle {
+  font-size: 2rem;
+  font-weight: 700;
+  margin-bottom: 2rem;
+  line-height: 1.3;
+}
+
+.home-hero__buttons {
+  display: flex;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.home-hero__image {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+}
+
+.home-hero__image img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 20px;
+}
+
+.home-features {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 2rem;
+}
+
+.home-feature-card {
+  background: var(--card-background);
+  padding: 2rem;
+  border-radius: 12px;
+  box-shadow: var(--shadow-l1);
+  transition: transform 0.2s;
+  text-decoration: none;
+  color: inherit;
+}
+
+.home-feature-card:hover {
+  transform: translateY(-5px);
+}
+
+.home-feature-card__icon {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  display: inline-block;
+  padding: 0.5rem;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: 8px;
+  color: #10b981;
+}
+
+.home-feature-card__title {
+  font-size: 1.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+}
+
+.home-feature-card__desc {
+  line-height: 1.6;
+  color: var(--body-text-color);
+}
+
+@media (max-width: 768px) {
+  .home-hero {
+    grid-template-columns: 1fr;
+    text-align: center;
+  }
+
+  .home-hero__image {
+    order: -1;
+  }
+
+  .home-hero__buttons {
+    justify-content: center;
+  }
+
+  .home-features {
+    grid-template-columns: 1fr;
+  }
+}
+
 .category-groups {
   display: flex;
   flex-direction: column;
@@ -439,6 +549,120 @@
 /* Section Title Spacing */
 .section-title {
   margin-top: 30px !important;
+}
+
+/* Course application form */
+.application-container {
+  margin: 2rem auto;
+  max-width: 600px;
+}
+
+.application-form {
+  background: var(--card-background);
+  padding: 2rem;
+  border-radius: var(--card-border-radius);
+  box-shadow: var(--shadow-l1);
+}
+
+.application-form[hidden],
+.payment-area[hidden] {
+  display: none;
+}
+
+.application-form__title {
+  margin: 0 0 1.5rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+}
+
+.form-label {
+  display: block;
+  margin-bottom: 0.5rem;
+  font-weight: 700;
+  color: var(--card-text-color-main);
+}
+
+.required-marker {
+  color: #d92d20;
+}
+
+.form-control,
+.form-select {
+  width: 100%;
+  padding: 0.8rem;
+  border: 1px solid var(--card-separator-color);
+  border-radius: 8px;
+  background: var(--card-background);
+  color: var(--card-text-color-main);
+  font-size: inherit;
+  font-family: inherit;
+  line-height: 1.5;
+}
+
+.form-control::placeholder {
+  color: var(--card-text-color-secondary);
+}
+
+.form-control:focus,
+.form-select:focus {
+  outline: none;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 3px rgba(var(--link-background-color), 0.35);
+}
+
+.btn-submit {
+  width: 100%;
+  padding: 1rem;
+  background-color: #10b981;
+  color: #ffffff;
+  border: none;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 1.4rem;
+  cursor: pointer;
+  transition: opacity 0.3s;
+}
+
+.btn-submit:hover {
+  opacity: 0.9;
+}
+
+.btn-submit:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+.payment-area {
+  text-align: center;
+  padding: 2rem;
+  background: rgba(16, 185, 129, 0.1);
+  border-radius: var(--card-border-radius);
+}
+
+.payment-message {
+  margin-bottom: 2rem;
+  font-size: 1.2rem;
+  font-weight: 700;
+}
+
+.payment-note {
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
+}
+
+.btn-stripe {
+  display: inline-block;
+  background-color: #635bff;
+  color: #ffffff;
+  padding: 1rem 2rem;
+  border-radius: 50px;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 1.2rem;
+  box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 }
 
 /* Card UI: Tile Grid Layout */

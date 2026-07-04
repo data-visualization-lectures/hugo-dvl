@@ -3,7 +3,14 @@
 # 過去日は Hugo ビルド時に自動で除外される（now 比較）。
 
 essentials:
+  title: "【1日間】データ可視化・基礎"
+  subject: "【1日間】データ可視化・基礎"
+  price: "22,000円（税込）"
+  capacity: "最大5名程度"
   time: "10:00-17:00"
+  stripe_url: "https://buy.stripe.com/9B600k9UO155cRtguc93y0b"
+  analytics_course_name: "一日講習 データ可視化の基礎"
+  content_category: "bootcamp-1day"
   schedules:
     - 2026-06-20
     - 2026-07-04
@@ -12,7 +19,14 @@ essentials:
     - 2026-08-15
 
 map:
+  title: "【1日間】主題地図の可視化・基礎"
+  subject: "【即戦力・1日間】データを地図に可視化する極意"
+  price: "22,000円（税込）"
+  capacity: "最大5名程度"
   time: "10:00-17:00"
+  stripe_url: "https://buy.stripe.com/4gMeVe7MG299eZB0ve93y0a"
+  analytics_course_name: "一日講習 地図とデータ可視化"
+  content_category: "bootcamp-1day"
   schedules:
     - 2026-06-13
     - 2026-06-27
@@ -22,7 +36,14 @@ map:
     - 2026-08-22
 
 wrangling:
+  title: "【1日間】データクレンジング・基礎"
+  subject: "【1日間】データクレンジング・基礎"
+  price: "22,000円（税込）"
+  capacity: "最大5名程度"
   time: "10:00-17:00"
+  stripe_url: "https://buy.stripe.com/4gM4gAff80114kX7XG93y0c"
+  analytics_course_name: "一日講習 データの整理術"
+  content_category: "bootcamp-1day"
   schedules:
     - 2026-06-14
     - 2026-06-28
@@ -32,7 +53,14 @@ wrangling:
     - 2026-08-23
 
 d3:
+  title: "【1日間】D3.js・基礎"
+  subject: "【1日間】D3.js・基礎"
+  price: "22,000円（税込）"
+  capacity: "最大5名程度"
   time: "10:00-17:00"
+  stripe_url: "https://buy.stripe.com/9B6eVegjc6pp2cPfq893y0l"
+  analytics_course_name: "一日講習 D3.js"
+  content_category: "bootcamp-1day"
   schedules:
     - 2026-06-21
     - 2026-07-05
@@ -41,7 +69,14 @@ d3:
     - 2026-08-16
 
 ai-coding-charts:
+  title: "【90分】AIコーディングでつくるインタラクティブチャート・入門"
+  subject: "【90分】AIコーディングでつくるインタラクティブチャート・入門"
+  price: "9,000円（税込）"
+  capacity: "最大5名程度"
   time: "19:30-21:00"
+  stripe_url: "https://buy.stripe.com/eVqeVe0ke4hh4kX1zi93y0m"
+  analytics_course_name: "90分講習 AIコーディングでつくるインタラクティブチャート入門"
+  content_category: "course"
   schedules:
     - 2026-06-17
     - 2026-07-01
