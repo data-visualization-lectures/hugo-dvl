@@ -24,6 +24,11 @@ mainSections = ['posts']
 featuredImageField = 'image'
 lightMode = 'auto'
 
+    [params.author]
+        orcid = "https://orcid.org/0009-0005-2429-3279"
+        name = "矢崎裕一"
+        profileURL = "https://visualizing.jp/profile/"
+
     [params.defaultImage.opengraph]
         enabled = true
         local = false

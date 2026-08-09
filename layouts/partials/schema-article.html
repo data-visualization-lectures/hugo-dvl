@@ -1,0 +1,17 @@
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": {{ .Title | jsonify | safeJS }},
+  "datePublished": "{{ .Date.Format "2006-01-02" }}",
+  "dateModified": "{{ .Lastmod.Format "2006-01-02" }}",
+  "inLanguage": {{ .Site.Language.Lang | jsonify | safeJS }},
+  "mainEntityOfPage": {{ .Permalink | jsonify | safeJS }},
+  "author": {
+    "@type": "Person",
+    "@id": {{ .Site.Params.author.orcid | jsonify | safeJS }},
+    "name": {{ .Site.Params.author.name | jsonify | safeJS }},
+    "url": {{ .Site.Params.author.profileURL | jsonify | safeJS }}
+  }
+}
+</script>
