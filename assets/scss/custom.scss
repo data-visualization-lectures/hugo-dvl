@@ -944,3 +944,86 @@ a.feature-card[href^="http"]:not([href*="://data-viz-lectures.com"]) .feature-ti
           mask-size: contain;
   opacity: 0.75;
 }
+
+/* Analytics consent */
+.analytics-consent {
+  position: fixed;
+  inset: auto 1.6rem 1.6rem 1.6rem;
+  z-index: 10000;
+  display: flex;
+  justify-content: center;
+}
+
+.analytics-consent[hidden],
+.analytics-consent-settings[hidden] {
+  display: none !important;
+}
+
+.analytics-consent__panel {
+  width: 100%;
+  max-width: 720px;
+  padding: 1.6rem;
+  border: 1px solid var(--card-separator-color);
+  border-radius: 12px;
+  background: var(--card-background);
+  box-shadow: var(--shadow-l2);
+}
+
+.analytics-consent__text {
+  margin: 0 0 1.2rem;
+  color: var(--card-text-color-main);
+  font-size: 1.4rem;
+  line-height: 1.7;
+}
+
+.analytics-consent__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.8rem;
+}
+
+.analytics-consent__button,
+.analytics-consent-settings {
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+  font: inherit;
+}
+
+.analytics-consent__button {
+  padding: 0.8rem 1.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+}
+
+.analytics-consent__button--primary {
+  background: var(--accent-color);
+  color: var(--accent-color-text);
+}
+
+.analytics-consent__button--secondary {
+  background: var(--body-background);
+  color: var(--card-text-color-main);
+}
+
+.analytics-consent-settings {
+  position: fixed;
+  right: 1.2rem;
+  bottom: 1.2rem;
+  z-index: 9999;
+  padding: 0.6rem 0.9rem;
+  background: var(--card-background);
+  color: var(--card-text-color-secondary);
+  box-shadow: var(--shadow-l1);
+  font-size: 1.2rem;
+}
+
+@media (max-width: 600px) {
+  .analytics-consent__actions {
+    flex-direction: column-reverse;
+  }
+
+  .analytics-consent__button {
+    width: 100%;
+  }
+}

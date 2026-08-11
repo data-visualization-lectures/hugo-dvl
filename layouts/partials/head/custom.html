@@ -1,20 +1,24 @@
 <script>
     window.dvlTrack = function (eventName, params) {
-        if (typeof window.gtag !== 'function') {
-            return;
+        const consent = window.dvlAnalyticsConsent;
+        if (typeof window.gtag !== 'function' || (consent && consent.getChoice() !== 'granted')) {
+            return false;
         }
         window.gtag('event', eventName, params || {});
+        return true;
     };
 </script>
 {{ if eq .RelPermalink "/pages/thanks/" }}
 <script>
     try {
         if (window.sessionStorage && sessionStorage.getItem('dvl_pending_contact_lead') === '1') {
-            sessionStorage.removeItem('dvl_pending_contact_lead');
-            window.dvlTrack('generate_lead', {
+            const tracked = window.dvlTrack('generate_lead', {
                 form_name: 'contact',
                 content_category: 'contact'
             });
+            if (tracked) {
+                sessionStorage.removeItem('dvl_pending_contact_lead');
+            }
         }
     } catch (error) {
         console.warn('Failed to track contact lead completion.', error);
@@ -62,8 +66,9 @@
                 const contentCategory = metadata.content_category || '';
                 const schedule = metadata.schedule || query.get('schedule') || '';
 
+                let tracked = false;
                 if (typeof window.dvlTrack === 'function') {
-                    window.dvlTrack('purchase', {
+                    tracked = window.dvlTrack('purchase', {
                         transaction_id: session.id,
                         affiliation: 'Stripe Checkout',
                         value,
@@ -85,7 +90,7 @@
                 }
 
                 try {
-                    if (window.localStorage) {
+                    if (tracked && window.localStorage) {
                         localStorage.setItem(trackedKey, '1');
                     }
                 } catch (error) {

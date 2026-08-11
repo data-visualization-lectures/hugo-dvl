@@ -1,0 +1,160 @@
+{{- with site.Config.Services.GoogleAnalytics.ID -}}
+<script>
+    (() => {
+        const measurementId = {{ . | jsonify | safeJS }};
+        const storageKey = 'dvl_analytics_consent';
+        const dnt = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+        const doNotTrack = dnt === '1' || dnt === 'yes';
+        let tagLoaded = false;
+
+        window.dataLayer = window.dataLayer || [];
+        window.gtag = window.gtag || function () {
+            window.dataLayer.push(arguments);
+        };
+
+        const readChoice = () => {
+            try {
+                return window.localStorage ? localStorage.getItem(storageKey) : null;
+            } catch (error) {
+                console.warn('Failed to read analytics consent.', error);
+                return null;
+            }
+        };
+
+        const writeChoice = (choice) => {
+            try {
+                if (window.localStorage) {
+                    localStorage.setItem(storageKey, choice);
+                }
+            } catch (error) {
+                console.warn('Failed to save analytics consent.', error);
+            }
+        };
+
+        const consentState = (analyticsStorage) => ({
+            analytics_storage: analyticsStorage,
+            ad_storage: 'denied',
+            ad_user_data: 'denied',
+            ad_personalization: 'denied'
+        });
+
+        const removeAnalyticsCookies = () => {
+            const domainParts = window.location.hostname.split('.');
+            const cookieDomains = new Set();
+
+            for (let index = 0; index < domainParts.length - 1; index += 1) {
+                cookieDomains.add(`.${domainParts.slice(index).join('.')}`);
+            }
+
+            document.cookie.split(';').forEach((cookie) => {
+                const name = cookie.split('=')[0].trim();
+                if (name === '_ga' || name.startsWith('_ga_')) {
+                    document.cookie = `${name}=; Max-Age=0; path=/; SameSite=Lax`;
+                    cookieDomains.forEach((domain) => {
+                        document.cookie = `${name}=; Max-Age=0; path=/; domain=${domain}; SameSite=Lax`;
+                    });
+                }
+            });
+        };
+
+        const loadTag = () => {
+            if (tagLoaded || doNotTrack) {
+                return;
+            }
+
+            tagLoaded = true;
+            const script = document.createElement('script');
+            script.async = true;
+            script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(measurementId)}`;
+            document.head.appendChild(script);
+            window.gtag('js', new Date());
+            window.gtag('config', measurementId);
+        };
+
+        const getChoice = () => {
+            if (doNotTrack) {
+                return 'denied';
+            }
+
+            return readChoice() === 'denied' ? 'denied' : 'granted';
+        };
+
+        const initialChoice = getChoice();
+        window.gtag('consent', 'default', consentState(initialChoice));
+
+        if (initialChoice === 'granted') {
+            loadTag();
+        }
+
+        const setChoice = (choice) => {
+            const granted = choice === 'granted';
+            writeChoice(granted ? 'granted' : 'denied');
+            window.gtag('consent', 'update', consentState(granted ? 'granted' : 'denied'));
+
+            if (granted) {
+                loadTag();
+            } else {
+                removeAnalyticsCookies();
+            }
+
+            document.documentElement.dataset.analyticsConsent = granted ? 'granted' : 'denied';
+        };
+
+        window.dvlAnalyticsConsent = {
+            getChoice,
+            setChoice
+        };
+
+        document.addEventListener('DOMContentLoaded', () => {
+            if (doNotTrack) {
+                return;
+            }
+
+            const container = document.createElement('div');
+            container.className = 'analytics-consent';
+            container.setAttribute('role', 'dialog');
+            container.setAttribute('aria-label', 'アクセス解析Cookieの設定');
+            container.innerHTML = `
+                <div class="analytics-consent__panel">
+                    <p class="analytics-consent__text">
+                        当サイトでは、サイト改善のためGoogle Analyticsを利用しています。アクセス解析はいつでも停止できます。
+                        <a href="/pages/privacy-policy/">詳細</a>
+                    </p>
+                    <div class="analytics-consent__actions">
+                        <button type="button" class="analytics-consent__button analytics-consent__button--secondary" data-consent="denied">計測を停止</button>
+                        <button type="button" class="analytics-consent__button analytics-consent__button--primary" data-consent="granted">計測を許可</button>
+                    </div>
+                </div>`;
+
+            const settingsButton = document.createElement('button');
+            settingsButton.type = 'button';
+            settingsButton.className = 'analytics-consent-settings';
+            settingsButton.textContent = 'Cookie設定';
+            settingsButton.setAttribute('aria-label', 'アクセス解析Cookieの設定を開く');
+
+            const openPanel = () => {
+                container.hidden = false;
+                const currentChoice = getChoice();
+                container.querySelectorAll('[data-consent]').forEach((button) => {
+                    button.setAttribute('aria-pressed', String(button.dataset.consent === currentChoice));
+                });
+            };
+
+            container.addEventListener('click', (event) => {
+                const button = event.target.closest('[data-consent]');
+                if (!button) {
+                    return;
+                }
+
+                setChoice(button.dataset.consent);
+                container.hidden = true;
+                settingsButton.hidden = false;
+            });
+
+            settingsButton.addEventListener('click', openPanel);
+            document.body.append(container, settingsButton);
+            container.hidden = true;
+        });
+    })();
+</script>
+{{- end -}}
