@@ -131,6 +131,8 @@ async function createCheckoutSession(event) {
   return jsonResponse(200, {
     id: session.id,
     url: session.url,
+    amount_total: session.amount_total,
+    currency: session.currency,
   });
 }
 
