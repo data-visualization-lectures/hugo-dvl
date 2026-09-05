@@ -39,6 +39,22 @@
                 return;
             }
 
+            let formStartTracked = false;
+
+            form.addEventListener('focusin', function () {
+                if (formStartTracked) {
+                    return;
+                }
+
+                formStartTracked = true;
+                if (typeof window.dvlTrack === 'function') {
+                    window.dvlTrack('form_start', {
+                        form_name: 'contact',
+                        content_category: 'contact'
+                    });
+                }
+            });
+
             form.addEventListener('submit', function () {
                 try {
                     if (window.sessionStorage) {
