@@ -73,6 +73,7 @@
         const applicationForm = document.getElementById({{ $formId | jsonify | safeJS }});
         const paymentArea = document.getElementById({{ $paymentId | jsonify | safeJS }});
         const applicationContainer = document.getElementById({{ $containerId | jsonify | safeJS }});
+        const scheduleSelect = document.getElementById({{ $scheduleId | jsonify | safeJS }});
         const stripeLink = paymentArea ? paymentArea.querySelector('.btn-stripe') : null;
         const baseAnalyticsParams = {
             form_name: 'bootcamp-application',
@@ -129,26 +130,85 @@
             headers: { "Content-Type": "application/x-www-form-urlencoded" },
             body: new URLSearchParams(formData).toString()
         });
-        const createCheckoutSession = (formData) => fetch("/.netlify/functions/stripe-checkout", {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify({
-                course_key: formData.get('course_key'),
-                schedule: formData.get('schedule'),
-                name: formData.get('name'),
-                email: formData.get('email'),
-                page_path: formData.get('page_path')
-            })
-        }).then((response) => {
-            if (!response.ok) {
-                throw new Error('Checkout Session creation failed.');
-            }
+        const createCheckoutSession = async (formData) => {
+            const identity = typeof window.dvlGetGaIdentity === 'function'
+                ? await window.dvlGetGaIdentity()
+                : { client_id: '', session_id: '' };
 
-            return response.json();
-        });
+            return fetch("/.netlify/functions/stripe-checkout", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    course_key: formData.get('course_key'),
+                    schedule: formData.get('schedule'),
+                    name: formData.get('name'),
+                    email: formData.get('email'),
+                    page_path: formData.get('page_path'),
+                    ga_client_id: identity.client_id,
+                    ga_session_id: identity.session_id
+                })
+            }).then((response) => {
+                if (!response.ok) {
+                    throw new Error('Checkout Session creation failed.');
+                }
+
+                return response.json();
+            });
+        };
 
         if (!applicationForm || !paymentArea || !applicationContainer) {
             return;
+        }
+
+        if (typeof window.dvlTrack === 'function') {
+            window.dvlTrack('view_item', ecommerceParams());
+        }
+
+        let formViewTracked = false;
+        let formStartTracked = false;
+
+        if ('IntersectionObserver' in window) {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach((entry) => {
+                    if (!entry.isIntersecting || formViewTracked) {
+                        return;
+                    }
+
+                    formViewTracked = true;
+                    if (typeof window.dvlTrack === 'function') {
+                        window.dvlTrack('form_view', analyticsParams());
+                    }
+                    observer.disconnect();
+                });
+            }, { threshold: 0.4 });
+
+            observer.observe(applicationContainer);
+        }
+
+        applicationForm.addEventListener('focusin', () => {
+            if (formStartTracked) {
+                return;
+            }
+
+            formStartTracked = true;
+            if (typeof window.dvlTrack === 'function') {
+                window.dvlTrack('form_start', analyticsParams());
+            }
+        });
+
+        if (scheduleSelect) {
+            scheduleSelect.addEventListener('change', () => {
+                const schedule = scheduleSelect.value;
+                if (!schedule || typeof window.dvlTrack !== 'function') {
+                    return;
+                }
+
+                window.dvlTrack('select_item', {
+                    ...ecommerceParams(),
+                    schedule,
+                    item_list_name: 'course_schedule'
+                });
+            });
         }
 
         if (stripeLink) {

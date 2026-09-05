@@ -81,6 +81,8 @@ async function createCheckoutSession(event) {
   const name = cleanText(payload.name);
   const email = cleanText(payload.email).toLowerCase();
   const pagePath = normalizePagePath(payload.page_path, course);
+  const gaClientId = cleanGaClientId(payload.ga_client_id);
+  const gaSessionId = cleanGaSessionId(payload.ga_session_id);
 
   if (!course) {
     return jsonResponse(400, { error: "Unknown course." });
@@ -107,6 +109,14 @@ async function createCheckoutSession(event) {
     attendee_name: name,
     attendee_email: email,
   };
+
+  if (gaClientId) {
+    metadata.ga_client_id = gaClientId;
+  }
+
+  if (gaSessionId) {
+    metadata.ga_session_id = gaSessionId;
+  }
 
   const params = new URLSearchParams();
   params.set("mode", "payment");
@@ -282,6 +292,16 @@ function publicMetadata(metadata) {
     content_category: metadata.content_category || "",
     schedule: metadata.schedule || "",
   };
+}
+
+function cleanGaClientId(value) {
+  const cleaned = cleanText(value);
+  return /^\d+\.\d+$/.test(cleaned) ? cleaned : "";
+}
+
+function cleanGaSessionId(value) {
+  const cleaned = cleanText(value);
+  return /^\d{1,20}$/.test(cleaned) ? cleaned : "";
 }
 
 function jsonResponse(statusCode, body) {

@@ -100,9 +100,45 @@
             document.documentElement.dataset.analyticsConsent = granted ? 'granted' : 'denied';
         };
 
+        const getGtagField = (field) => new Promise((resolve) => {
+            if (typeof window.gtag !== 'function' || getChoice() !== 'granted') {
+                resolve('');
+                return;
+            }
+
+            let settled = false;
+            const finish = (value) => {
+                if (settled) {
+                    return;
+                }
+
+                settled = true;
+                resolve(value ? String(value) : '');
+            };
+
+            const timer = window.setTimeout(() => finish(''), 800);
+
+            try {
+                window.gtag('get', measurementId, field, (value) => {
+                    window.clearTimeout(timer);
+                    finish(value);
+                });
+            } catch (error) {
+                window.clearTimeout(timer);
+                console.warn('Failed to read GA field.', field, error);
+                finish('');
+            }
+        });
+
         window.dvlAnalyticsConsent = {
             getChoice,
             setChoice
+        };
+
+        window.dvlAnalytics = {
+            measurementId,
+            getClientId: () => getGtagField('client_id'),
+            getSessionId: () => getGtagField('session_id')
         };
 
         document.addEventListener('DOMContentLoaded', () => {

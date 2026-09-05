@@ -7,6 +7,91 @@
         window.gtag('event', eventName, params || {});
         return true;
     };
+
+    window.dvlGetGaIdentity = async function () {
+        const analytics = window.dvlAnalytics;
+        if (!analytics) {
+            return { client_id: '', session_id: '' };
+        }
+
+        const [clientId, sessionId] = await Promise.all([
+            analytics.getClientId(),
+            analytics.getSessionId()
+        ]);
+
+        return {
+            client_id: clientId || '',
+            session_id: sessionId || ''
+        };
+    };
+
+    (() => {
+        const salesHosts = new Set([
+            'personal.data-viz-lectures.com',
+            'www.udemy.com',
+            'udemy.com'
+        ]);
+
+        const trackSelectContent = (params) => {
+            if (typeof window.dvlTrack !== 'function') {
+                return;
+            }
+
+            window.dvlTrack('select_content', params);
+        };
+
+        document.addEventListener('click', (event) => {
+            const link = event.target.closest('a[href]');
+            if (!link) {
+                return;
+            }
+
+            const href = link.getAttribute('href') || '';
+            let url;
+
+            try {
+                url = new URL(href, window.location.origin);
+            } catch (error) {
+                return;
+            }
+
+            const card = link.closest('.external-link-card');
+            if (card) {
+                trackSelectContent({
+                    content_type: 'external_link_card',
+                    item_id: url.href,
+                    item_name: (link.querySelector('.external-link-card__title')?.textContent || link.textContent || '').trim().slice(0, 100),
+                    link_url: url.href,
+                    link_domain: url.hostname,
+                    outbound: url.origin !== window.location.origin
+                });
+                return;
+            }
+
+            if (link.classList.contains('home-feature-card')) {
+                trackSelectContent({
+                    content_type: 'home_feature_card',
+                    item_id: url.pathname === '/' ? url.href : (url.pathname || url.href),
+                    item_name: (link.querySelector('.home-feature-card__title')?.textContent || link.textContent || '').trim().slice(0, 100),
+                    link_url: url.href,
+                    link_domain: url.hostname,
+                    outbound: url.origin !== window.location.origin
+                });
+                return;
+            }
+
+            if (salesHosts.has(url.hostname)) {
+                trackSelectContent({
+                    content_type: 'outbound_sales_link',
+                    item_id: url.href,
+                    item_name: (link.textContent || url.hostname).trim().slice(0, 100),
+                    link_url: url.href,
+                    link_domain: url.hostname,
+                    outbound: true
+                });
+            }
+        });
+    })();
 </script>
 {{ if eq .RelPermalink "/pages/thanks/" }}
 <script>
@@ -77,6 +162,7 @@
                         course_name: courseName,
                         content_category: contentCategory,
                         schedule,
+                        event_source: 'browser',
                         items: [
                             {
                                 item_id: courseKey,
