@@ -23,6 +23,35 @@
   [context.deploy-preview.environment]
     HUGO_ENV = "preview"
 
+# 旧Shopifyの商品URLを現行講座へ恒久転送する。
+# Netlifyは末尾スラッシュの有無を正規化してマッチする。
+[[redirects]]
+  from = "/products/1day-dataviz"
+  to = "/posts/1day-essentials/"
+  status = 301
+
+# 短縮URL bit.ly/dvl-data-everything の転送先。
+[[redirects]]
+  from = "/collections/講習/products/1day-data-everything"
+  to = "/posts/1day-wrangling/"
+  status = 301
+
+[[redirects]]
+  from = "/collections/%E8%AC%9B%E7%BF%92/products/1day-data-everything"
+  to = "/posts/1day-wrangling/"
+  status = 301
+
+[[redirects]]
+  from = "/products/1day-data-everything"
+  to = "/posts/1day-wrangling/"
+  status = 301
+
+# 二日間講習は単一の現行講座と範囲が一致しないため、関連講座の案内へ。
+[[redirects]]
+  from = "/products/2days-data-map"
+  to = "/pages/2days-data-map/"
+  status = 301
+
 [[plugins]]
   package = "netlify-plugin-hugo-cache-resources"
 
